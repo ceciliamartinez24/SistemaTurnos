@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  usuario VARCHAR(50) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  rol ENUM('admin','usuario') NOT NULL DEFAULT 'usuario'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO usuarios (usuario, email, password, rol)
+VALUES ('admin', 'admin@turnos.com', '1234', 'admin');
+
