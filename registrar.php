@@ -28,7 +28,6 @@ if (isset($_POST['registrar'])) {
 }
 ?>
 
-<!--HTML -->
 <form action="registrar.php" method="POST">
   <input type="text" name="usuario" placeholder="Usuario" required>
   <input type="email" name="email" placeholder="Email" required>

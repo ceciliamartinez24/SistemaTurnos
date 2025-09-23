@@ -20,7 +20,6 @@ if (isset($_POST['ingresar'])) {
 
         if (password_verify($password, $row['password'])) {
             echo "Bienvenido, " . $row['usuario'];
-            // más adelante acá va session_start()
         } else {
             echo "Contraseña incorrecta";
         }
@@ -32,7 +31,6 @@ if (isset($_POST['ingresar'])) {
 }
 ?>
 
-<!--HTML -->
 <form action="login.php" method="POST">
   <input type="text" name="usuario" placeholder="Usuario" required>
   <input type="password" name="password" placeholder="Contraseña" required>
