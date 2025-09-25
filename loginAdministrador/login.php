@@ -29,12 +29,22 @@ if (isset($_POST['ingresar'])) {
 
     $stmt->close();
 }
-?>
 
-<form action="login.php" method="POST">
-  <input type="text" name="usuario" placeholder="Usuario" required>
-  <input type="password" name="password" placeholder="Contraseña" required>
-  <button type="submit" name="ingresar">Ingresar</button>
-</form>
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <form action="login.php" method="POST">
+    <input type="text" name="usuario" placeholder="Usuario" required>
+    <input type="password" name="password" placeholder="Contraseña" required>
+    <button type="submit" name="ingresar">Ingresar</button>
+  </form>
+</body>
+</html>
 
 
