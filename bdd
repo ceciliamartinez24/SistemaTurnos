@@ -8,4 +8,3 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 INSERT INTO usuarios (usuario, email, password, rol)
 VALUES ('admin', 'admin@turnos.com', '1234', 'admin');
-

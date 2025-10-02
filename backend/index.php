@@ -5,76 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda tu look</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fff9f9ff;
-    }
+   /* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff9f9;
+}
 
-    header {
-      background: #b987b5ff;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
+header {
+  background: #b987b5;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
 
-    main {
-      display: flex;
-      justify-content: space-around;
-      padding: 2rem;
-    }
+/* Layout principal */
+main {
+   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
 
-    /* Calendario */
-    .calendario {
-      width: 50%;
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+}
 
-    .calendario h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+/* Columna izquierda: calendario + hora */
+.columnaIzquierda {
+  flex: 0 0 auto;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-    /* Flyer de servicios */
-    .flyerServicios{
-      width: 35%;
-      background: white;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+}
 
-    .flyerServicios h2 {
-      margin-bottom: 1rem;
-    }
+/* Bloques de calendario y hora */
+.calendario {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 
-    .servicios {
-      background: #f1f1f1;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border-radius: 5px;
-    }
+}
 
-    /* Botón */
-    .boton {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
-      background: #aa6db3ff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
+.calendario h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
-    .boton:hover {
-      background: #9f5ea1ff;
-    }
+/* Columna derecha: servicios */
+.flyerServicios {
+  flex: 0 0 auto;
+  width: 400px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+
+}
+
+.flyerServicios h2 {
+  margin-bottom: 1rem;
+}
+
+/* Servicios */
+.servicios {
+  background: #f1f1f1;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+}
+
+/* Botones */
+.boton {
+    display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  background: #aa6db3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid white; /* ← esta línea unifica el borde */
+  transition: background 0.3s;
+
+}
+
+.boton:hover {
+  background: #9f5ea1;
+  border: 2px solid white;
+
+}
   </style>
 </head>
 <body>
@@ -83,41 +108,52 @@
     <h1>Agenda tu look</h1>
   </header>
 
-  <main>
-    <!-- Calendario -->
-    <section class="calendario">
-      <h2>Calendario de turnos disponibles</h2>
-      <p>Aquí se mostrarán los turnos disponibles.</p>
-      <!-- Más adelante acá podemos usar un input de tipo date o un calendario dinámico -->
+  
+   <main>
+  <!-- Columna izquierda -->
+  <section class="columnaIzquierda">
+    <div class="calendario">
+      <h2>Seleccionar fecha</h2>
       <input type="date" id="fechaTurno">
-      <br><br>
-      <button class="boton">Seleccionar fecha</button>
-    </section>
+      <button id="botonFecha" class="boton">Seleccionar fecha</button>
+    </div>
 
-    <!-- Flyer de Servicios -->
-    <section class="flyerServicios">
-      <h2>Seleccionar servicios</h2>
-      <!--<div class="servicios">Corte de pelo</div>
-      <div class="servicios">Perfilado de cejas</div>
-      <div class="servicios">Nutriciaon y lavado</div> 
-      <a href="#" class="boton">Reservar Ahora</a>
-    </section> -->
-      <div>
-      <label>
-        <input type="checkbox" class="servicios" data-precio="10000" value="Corte de pelo"> Corte de pelo ($10.000)
-      </label><br>
-      <label>
-        <input type="checkbox" class="servicios" data-precio="5000" value="Perfilado de cejas"> Perfilado de cejas ($5.000)
-      </label><br>
-      <label>
-        <input type="checkbox" class="servicios" data-precio="7000" value="Nutricion y lavado"> Nutricion y lavado ($7.000)
-      </label>
-      </div>
-      <a href="#" id="boton" class="boton">Seleccionar</a>
-  </main>
+    <div class="calendario">
+      <h2>Seleccionar hora</h2>
+      <select id="horaTurno">
+        <option value="">-- Elegí una hora --</option>
+        <option value="09:00">09:00</option>
+        <option value="10:00">10:00</option>
+        <option value="11:00">11:00</option>
+        <option value="12:00">12:00</option>
+        <option value="13:00">13:00</option>
+        <option value="16:00">16:00</option>
+        <option value="17:00">17:00</option>
+        <option value="18:00">18:00</option>
+        <option value="19:00">19:00</option>
+        <option value="20:00">20:00</option>
+      </select>
+      <button id="botonHora" class="boton">Seleccionar hora</button>
+    </div>
+  </section>
+
+  <!-- Columna derecha -->
+  <section class="flyerServicios">
+    <h2>Seleccionar servicios</h2>
+    <label><input type="checkbox" class="servicios" data-precio="10000" value="Corte de pelo"> Corte de pelo ($10.000)</label><br>
+    <label><input type="checkbox" class="servicios" data-precio="5000" value="Perfilado de cejas"> Perfilado de cejas ($5.000)</label><br>
+    <label><input type="checkbox" class="servicios" data-precio="7000" value="Nutricion y lavado"> Nutricion y lavado ($7.000)</label><br>
+    <a href="#" id="boton" class="boton">Seleccionar</a>
+  </section>
+</main>
 
   <div id="resumenTurno" style="margin-top:20px; display:none;">
   <h3>Resumen de su turno:</h3>
+  <p><strong>Fecha seleccionada:</strong> <span id="fechaSeleccionada"></span></p>
+  <p><strong>Hora seleccionada:</strong> <span id="horaSeleccionada"></span></p>
+    <input type="hidden" name="fecha" id="fechaTurnoSeleccionada">
+    <input type="hidden" name="hora" id="horaTurnoSeleccionada">
+
   <ul id="listaServicios"></ul>
   <p><strong>Total:</strong> $<span id="total"></span></p>
   <form action="confirmarTurno.php" method="POST">
@@ -127,32 +163,77 @@
   </form>
   </div>
 
-  <script>
-    
-    document.getElementById("boton").addEventListener("click",()=>{
-      let servicios=document.querySelectorAll(".servicios:checked");
-      let listaServicios=document.getElementById("listaServicios");
-      let total = 0;
-      let nombreServicios = [];
+ <script>
+  // Función para formatear fecha estilo argentino
+  function formatearFecha(fechaISO) {
+    const partes = fechaISO.split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  }
 
-      listaServicios.innerHTML = ""; //para que asegure que esta limpio antes de agregar
-      servicios.forEach(s => {
-          let li=document.createElement("li");
-          li.textContent = `${s.value} - $${s.dataset.precio}`;
-          listaServicios.appendChild(li);
+  document.getElementById("boton").addEventListener("click", () => {
+    let servicios = document.querySelectorAll(".servicios:checked");
+    let listaServicios = document.getElementById("listaServicios");
+    let total = 0;
+    let nombreServicios = [];
 
-          total += parseInt (s.dataset.precio);
-      })
+    listaServicios.innerHTML = "";
 
-      document.getElementById("total").textContent = total;
-      document.getElementById("resumenTurno").style.display = "block";
+    servicios.forEach(s => {
+      let li = document.createElement("li");
+      li.textContent = `${s.value} - $${s.dataset.precio}`;
+      listaServicios.appendChild(li);
+      total += parseInt(s.dataset.precio);
+      nombreServicios.push(s.value);
+    });
 
-      document.getElementById("serviciosSeleccionados").value = nombreServicios.join(",");
-      document.getElementById("precioTotal").value = total;
+    // Capturar y mostrar la fecha formateada
+    let fecha = document.getElementById("fechaTurno").value;
+    if (fecha) {
+      let fechaFormateada = formatearFecha(fecha);
+      document.getElementById("fechaSeleccionada").textContent = fechaFormateada;
+      document.getElementById("fechaTurnoSeleccionada").value = fechaFormateada;
+    } else {
+      document.getElementById("fechaSeleccionada").textContent = "No seleccionada";
+      document.getElementById("fechaTurnoSeleccionada").value = "";
+    }
+    let hora = document.getElementById("horaTurno").value;
+    if (hora) {
+      document.getElementById("horaSeleccionada").textContent = hora;
+      document.getElementById("horaTurnoSeleccionada").value = hora;
+    } else {
+      document.getElementById("horaSeleccionada").textContent = "No seleccionada";
+      document.getElementById("horaTurnoSeleccionada").value = "";
+      }
 
-    })
+    document.getElementById("total").textContent = total;
+    document.getElementById("resumenTurno").style.display = "block";
 
-  </script>
+    document.getElementById("serviciosSeleccionados").value = nombreServicios.join(",");
+    document.getElementById("precioTotal").value = total;
+  });
+  document.getElementById("botonHora").addEventListener("click", () => {
+  let hora = document.getElementById("horaTurno").value;
+  if (hora) {
+    document.getElementById("horaSeleccionada").textContent = hora;
+    document.getElementById("horaTurnoSeleccionada").value = hora;
+  } else {
+    document.getElementById("horaSeleccionada").textContent = "No seleccionada";
+    document.getElementById("horaTurnoSeleccionada").value = "";
+  }
+});
+  document.getElementById("botonFecha").addEventListener("click", () => {
+  let fecha = document.getElementById("fechaTurno").value;
+  if (fecha) {
+    let fechaFormateada = formatearFecha(fecha);
+    document.getElementById("fechaSeleccionada").textContent = fechaFormateada;
+    document.getElementById("fechaTurnoSeleccionada").value = fechaFormateada;
+  } else {
+    document.getElementById("fechaSeleccionada").textContent = "No seleccionada";
+    document.getElementById("fechaTurnoSeleccionada").value = "";
+  }
+});
+</script>
+
 
 </body>
 </html>
