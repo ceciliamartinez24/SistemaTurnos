@@ -210,6 +210,18 @@ main {
 
     document.getElementById("serviciosSeleccionados").value = nombreServicios.join(",");
     document.getElementById("precioTotal").value = total;
+    let resumen = `Fecha: ${document.getElementById("fechaSeleccionada").textContent}
+    Hora: ${document.getElementById("horaSeleccionada").textContent}
+    Servicios:\n`;
+    servicios.forEach(s => {
+      resumen += `- ${s.value} ($${s.dataset.precio})\n`;
+    });
+
+resumen += `Total: $${total}`;
+
+alert(resumen);
+
+
   });
   document.getElementById("botonHora").addEventListener("click", () => {
   let hora = document.getElementById("horaTurno").value;
