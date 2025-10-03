@@ -165,4 +165,4 @@ main {
 
 </body>
 </html>
-<script src="/Turnos/seleccion.js"></script>
+<script src="seleccion.js"></script>
