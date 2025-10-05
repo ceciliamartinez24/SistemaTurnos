@@ -42,3 +42,99 @@ button {
 button:hover {
   background: #005fa3;
 }
+
+   /* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff9f9;
+}
+
+header {
+  background: #b987b5;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Layout principal */
+main {
+   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+
+}
+
+/* Columna izquierda: calendario + hora */
+.columnaIzquierda {
+  flex: 0 0 auto;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+
+/* Bloques de calendario y hora */
+.calendario {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+
+.calendario h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Columna derecha: servicios */
+.flyerServicios {
+  flex: 0 0 auto;
+  width: 400px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+
+}
+
+.flyerServicios h2 {
+  margin-bottom: 1rem;
+}
+
+/* Servicios */
+.servicios {
+  background: #f1f1f1;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+}
+
+/* Botones */
+.boton {
+    display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  background: #aa6db3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid white; /* ← esta línea unifica el borde */
+  transition: background 0.3s;
+
+}
+
+.boton:hover {
+  background: #9f5ea1;
+  border: 2px solid white;
+
+}

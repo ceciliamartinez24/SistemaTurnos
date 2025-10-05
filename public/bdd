@@ -8,3 +8,15 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 INSERT INTO usuarios (usuario, email, password, rol)
 VALUES ('admin', 'admin@turnos.com', '1234', 'admin');
+
+//tabla turnos
+CREATE TABLE turnos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_cliente VARCHAR(255) NOT NULL,
+    telefono_cliente VARCHAR(50) NOT NULL,
+    fecha_turno DATE NOT NULL,
+    hora_turno TIME NOT NULL,
+    servicios TEXT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

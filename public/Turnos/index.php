@@ -108,14 +108,33 @@ main {
     <h1>Agenda tu look</h1>
   </header>
 
-  
    <main>
-  <!-- Columna izquierda -->
-  <section class="columnaIzquierda">
+  <!--pantalla inicial-->
+  <section id="inicio">
+  <h1>Bienvenido a Agenda tu look</h1>
+  <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
+  <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
+  </section>
+
+  <!--paso 1: datos del cliemte-->
+  <section id="solicitudTurno" style="display:none;">
+  <div class="datosCliente">
+    <h2>Ingrese sus datos</h2>
+    <form id="formularioCliente">
+        <label>Nombre y apellido:</label>
+        <input type="text" id="nombreCliente" required>
+        <label>Numero de celular:</label>
+        <input type="tel" id="telefonoCliente">
+    </form>
+     <button type="button" id="botonSiguiente1" class="boton">Siguiente</button>
+  </div>
+  </section>
+
+  <!-- paso 2: seleccionar fecha y hora -->
+  <section id="seleccionarFecha" class="columnaIzquierda" style="display:none">
     <div class="calendario">
       <h2>Seleccionar fecha</h2>
       <input type="date" id="fechaTurno">
-      <button id="botonFecha" class="boton">Seleccionar fecha</button>
     </div>
 
     <div class="calendario">
@@ -133,36 +152,42 @@ main {
         <option value="19:00">19:00</option>
         <option value="20:00">20:00</option>
       </select>
-      <button id="botonHora" class="boton">Seleccionar hora</button>
+
+      <button id="botonSiguiente2" class="boton">Siguiente</button>
     </div>
   </section>
 
-  <!-- Columna derecha -->
-  <section class="flyerServicios">
+  <!-- paso 3: seleccion de servicios -->
+  <section id="flyerServicios" class="flyerServicios" style="display:none;">
     <h2>Seleccionar servicios</h2>
     <label><input type="checkbox" class="servicios" data-precio="10000" value="Corte de pelo"> Corte de pelo ($10.000)</label><br>
     <label><input type="checkbox" class="servicios" data-precio="5000" value="Perfilado de cejas"> Perfilado de cejas ($5.000)</label><br>
     <label><input type="checkbox" class="servicios" data-precio="7000" value="Nutricion y lavado"> Nutricion y lavado ($7.000)</label><br>
-    <a href="#" id="boton" class="boton">Seleccionar</a>
+    <a href="#" id="botonSiguiente3" class="boton">Solicitar turno</a>
   </section>
-</main>
 
-  <div id="resumenTurno" style="margin-top:20px; display:none;">
+<!--paso 4: resumen del turno-->
+  <section id="resumenTurno" style="display:none;">
   <h3>Resumen de su turno:</h3>
+  <p><stong>Nombre:</stong> <span id="nombreResumen"></span></p>
+  <p><stong>Telefono:</stong> <span id="telefonoResumen"></span></p>
   <p><strong>Fecha seleccionada:</strong> <span id="fechaSeleccionada"></span></p>
   <p><strong>Hora seleccionada:</strong> <span id="horaSeleccionada"></span></p>
-    <input type="hidden" name="fecha" id="fechaTurnoSeleccionada">
-    <input type="hidden" name="hora" id="horaTurnoSeleccionada">
-
+  <p><strong>Servicios:</strong></p>
   <ul id="listaServicios"></ul>
   <p><strong>Total:</strong> $<span id="total"></span></p>
-  <form action="confirmarTurno.php" method="POST">
-    <input type="hidden" name="servicios" id="serviciosSeleccionados">
-    <input type="hidden" name="total" id="precioTotal">
-    <button type="submit">Confirmar turno</button>
-  </form>
-  </div>
 
+  <form action="confirmarTurno.php" method="POST">
+        <input type="hidden" name="nombre" id="nombreHidden">
+        <input type="hidden" name="telefono" id="telefonoHidden">
+        <input type="hidden" name="fecha" id="fechaHidden">
+        <input type="hidden" name="hora" id="horaHidden">
+        <input type="hidden" name="servicios" id="serviciosHidden">
+        <input type="hidden" name="total" id="totalHidden">
+        <button type="submit">Confirmar turno</button>
+      </form>
+</section>
+   </main>
 </body>
 </html>
 <script src="seleccion.js"></script>

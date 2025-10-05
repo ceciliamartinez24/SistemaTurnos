@@ -1,10 +1,55 @@
-// Función para formatear fecha estilo argentino
+//para formatear fecha estilo argentino
   function formatearFecha(fechaISO) {
     const partes = fechaISO.split("-");
     return `${partes[2]}/${partes[1]}/${partes[0]}`;
   }
 
-  document.getElementById("boton").addEventListener("click", () => {
+  //funcion para ir avanzando los pasos
+  function mostrarPasos (actual, siguiente){
+    document.getElementById(actual).style.display="none";
+    document.getElementById(siguiente).style.display="block";
+  }
+
+  //paso 1 hacia paso 2
+  document.getElementById("botonSiguiente1").addEventListener("click", () => {
+  const nombre = document.getElementById("nombreCliente").value.trim();
+  const telefono = document.getElementById("telefonoCliente").value.trim();
+
+if (!nombre || !telefono){
+  alert ("Por favor complete sus datos");
+  return;
+};
+
+  document.getElementById("nombreResumen").textContent = nombre;
+  document.getElementById("telefonoResumen").textContent = telefono;
+  document.getElementById("nombreHidden").value = nombre;
+  document.getElementById("telefonoHidden").value = telefono;
+
+  mostrarPasos("solicitudTurno", "seleccionarFecha");
+  });
+
+  //paso 2 hacia el paso 3
+  document.getElementById("botonSiguiente2").addEventListener("click", () => {
+  let fecha = document.getElementById("fechaTurno").value;
+  let hora = document.getElementById("horaTurno").value;
+
+  if (!fecha || !hora) {
+    alert("Seleccione fecha y hora.");
+    return;
+  };
+
+  const fechaFormateada = formatearFecha(fecha);
+
+  document.getElementById("fechaSeleccionada").textContent = fechaFormateada;
+  document.getElementById("horaSeleccionada").textContent = hora;
+  document.getElementById("fechaHidden").value = fecha;
+  document.getElementById("horaHidden").value = hora;
+
+  mostrarPasos("seleccionarFecha", "flyerServicios");
+});
+
+  //paso 3 hacia el paso 4
+  document.getElementById("botonSiguiente3").addEventListener("click", () => {
     let servicios = document.querySelectorAll(".servicios:checked");
     let listaServicios = document.getElementById("listaServicios");
     let total = 0;
@@ -20,61 +65,9 @@
       nombreServicios.push(s.value);
     });
 
-    // Capturar y mostrar la fecha formateada
-    let fecha = document.getElementById("fechaTurno").value;
-    if (fecha) {
-      let fechaFormateada = formatearFecha(fecha);
-      document.getElementById("fechaSeleccionada").textContent = fechaFormateada;
-      document.getElementById("fechaTurnoSeleccionada").value = fechaFormateada;
-    } else {
-      document.getElementById("fechaSeleccionada").textContent = "No seleccionada";
-      document.getElementById("fechaTurnoSeleccionada").value = "";
-    }
-    let hora = document.getElementById("horaTurno").value;
-    if (hora) {
-      document.getElementById("horaSeleccionada").textContent = hora;
-      document.getElementById("horaTurnoSeleccionada").value = hora;
-    } else {
-      document.getElementById("horaSeleccionada").textContent = "No seleccionada";
-      document.getElementById("horaTurnoSeleccionada").value = "";
-      }
+  document.getElementById("total").textContent = total;
+  document.getElementById("serviciosHidden").value = nombreServicios.join(",");
+  document.getElementById("totalHidden").value = total;
 
-    document.getElementById("total").textContent = total;
-    document.getElementById("resumenTurno").style.display = "block";
-
-    document.getElementById("serviciosSeleccionados").value = nombreServicios.join(",");
-    document.getElementById("precioTotal").value = total;
-    let resumen = `Fecha: ${document.getElementById("fechaSeleccionada").textContent}
-    Hora: ${document.getElementById("horaSeleccionada").textContent}
-    Servicios:\n`;
-    servicios.forEach(s => {
-      resumen += `- ${s.value} ($${s.dataset.precio})\n`;
-    });
-
-resumen += `Total: $${total}`;
-
-alert(resumen);
-
-
-  });
-  document.getElementById("botonHora").addEventListener("click", () => {
-  let hora = document.getElementById("horaTurno").value;
-  if (hora) {
-    document.getElementById("horaSeleccionada").textContent = hora;
-    document.getElementById("horaTurnoSeleccionada").value = hora;
-  } else {
-    document.getElementById("horaSeleccionada").textContent = "No seleccionada";
-    document.getElementById("horaTurnoSeleccionada").value = "";
-  }
-});
-  document.getElementById("botonFecha").addEventListener("click", () => {
-  let fecha = document.getElementById("fechaTurno").value;
-  if (fecha) {
-    let fechaFormateada = formatearFecha(fecha);
-    document.getElementById("fechaSeleccionada").textContent = fechaFormateada;
-    document.getElementById("fechaTurnoSeleccionada").value = fechaFormateada;
-  } else {
-    document.getElementById("fechaSeleccionada").textContent = "No seleccionada";
-    document.getElementById("fechaTurnoSeleccionada").value = "";
-  }
+  mostrarPasos("flyerServicios", "resumenTurno");
 });
