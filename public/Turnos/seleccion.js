@@ -71,3 +71,8 @@ if (!nombre || !telefono){
 
   mostrarPasos("flyerServicios", "resumenTurno");
 });
+//boton ingresar como administrador.
+document.getElementById("botonAdministrador").addEventListener("click", function() {
+  window.location.href = "login.php";
+  console.log("Botón administrador presionado");
+});

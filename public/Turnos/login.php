@@ -36,13 +36,14 @@ if (isset($_POST['ingresar'])) {
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="Css/estilos.css">
 </head>
 <body>
   <form action="login.php" method="POST">
     <input type="text" name="usuario" placeholder="Usuario" required>
     <input type="password" name="password" placeholder="Contraseña" required>
     <button type="submit" name="ingresar">Ingresar</button>
+    <a href="registrar.php" class="boton-registro">¿No tenés cuenta? Registrate</a>
   </form>
 </body>
 </html>

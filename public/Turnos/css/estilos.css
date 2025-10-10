@@ -1,0 +1,94 @@
+
+/* Reset y fuente */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Fondo lavanda */
+body {
+  background: linear-gradient(135deg, #f3d1fa, #eaa1fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor del formulario */
+form {
+  background-color: #fbe3ff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Título opcional */
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #7c3e9d;
+}
+
+/* Campos */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #cba3d8;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+/* Botón */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ae1ff0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #9c1ad1;
+}
+
+/* Placeholder */
+input::placeholder {
+  color: #aaa;
+}
+
+/* Mensaje de error opcional */
+.mensaje-error {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+.boton-registro {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #d58af7;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.boton-registro:hover {
+  background-color: #ae1ff0;
+}
