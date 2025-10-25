@@ -29,6 +29,8 @@
         <input type="text" id="nombreCliente" required>
         <label>Numero de celular:</label>
         <input type="tel" id="telefonoCliente">
+        <label>Correo electronico:</label>
+        <input type="email" id="emailCliente">
     </form>
      <button type="button" id="botonSiguiente1" class="boton">Siguiente</button>
   </div>
@@ -75,6 +77,7 @@
   <h3>Resumen de su turno:</h3>
   <p><stong>Nombre:</stong> <span id="nombreResumen"></span></p>
   <p><stong>Telefono:</stong> <span id="telefonoResumen"></span></p>
+  <p><strong>Email:</strong> <span id="emailResumen"></span></p>
   <p><strong>Fecha seleccionada:</strong> <span id="fechaSeleccionada"></span></p>
   <p><strong>Hora seleccionada:</strong> <span id="horaSeleccionada"></span></p>
   <p><strong>Servicios:</strong></p>
@@ -84,6 +87,7 @@
   <form action="confirmarTurno.php" method="POST">
         <input type="hidden" name="nombre" id="nombreHidden">
         <input type="hidden" name="telefono" id="telefonoHidden">
+        <input type="hidden" name="email" id="emailHidden">
         <input type="hidden" name="fecha" id="fechaHidden">
         <input type="hidden" name="hora" id="horaHidden">
         <input type="hidden" name="servicios" id="serviciosHidden">

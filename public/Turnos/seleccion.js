@@ -14,16 +14,19 @@
   document.getElementById("botonSiguiente1").addEventListener("click", () => {
   const nombre = document.getElementById("nombreCliente").value.trim();
   const telefono = document.getElementById("telefonoCliente").value.trim();
+  const email = document.getElementById("emailCliente").value.trim();
 
-if (!nombre || !telefono){
+if (!nombre || !telefono || !email){
   alert ("Por favor complete sus datos");
   return;
 };
 
   document.getElementById("nombreResumen").textContent = nombre;
   document.getElementById("telefonoResumen").textContent = telefono;
+  document.getElementById("emailResumen").textContent = email;
   document.getElementById("nombreHidden").value = nombre;
   document.getElementById("telefonoHidden").value = telefono;
+  document.getElementById("emailHidden").value = email;
 
   mostrarPasos("solicitudTurno", "seleccionarFecha");
   });

@@ -20,3 +20,6 @@ CREATE TABLE turnos (
     total DECIMAL(10,2) NOT NULL,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+//agregar en la tabla turnos: 
+ALTER TABLE turnos ADD COLUMN email_cliente VARCHAR(255);
