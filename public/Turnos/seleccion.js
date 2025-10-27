@@ -79,3 +79,33 @@ document.getElementById("botonAdministrador").addEventListener("click", function
   window.location.href = "login.php";
   console.log("Botón administrador presionado");
 });
+//funcion cargar Servicios
+function cargarServicios() {
+  fetch("acciones.php?accion=ver_servicios")
+    .then(res => res.json())
+    .then(data => {
+      const lista = document.getElementById("listaCheckboxServicios");
+        lista.innerHTML = ""; // limpiar antes de insertar
+
+      data.forEach(servicio => {
+        const label = document.createElement("label");
+        label.innerHTML = `
+          <input type="checkbox" class="servicios" data-precio="${servicio.precio}" value="${servicio.nombre}">
+          ${servicio.nombre} ($${servicio.precio})
+        `;
+      lista.innerHTML += `
+  <label>
+    <input type="checkbox" class="servicios" data-precio="${servicio.precio}" value="${servicio.nombre}">
+    ${servicio.nombre} ($${servicio.precio})
+  </label><br>
+`;
+
+      });
+
+      //contenedor.insertBefore(lista, document.getElementById("botonSiguiente3"));
+    })
+    .catch(error => {
+      console.error("Error al cargar servicios:", error);
+    });
+}
+cargarServicios();

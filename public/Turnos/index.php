@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,14 +64,14 @@
     </div>
   </section>
 
-  <!-- paso 3: seleccion de servicios -->
-  <section id="flyerServicios" class="flyerServicios" style="display:none;">
-    <h2>Seleccionar servicios</h2>
-    <label><input type="checkbox" class="servicios" data-precio="10000" value="Corte de pelo"> Corte de pelo ($10.000)</label><br>
-    <label><input type="checkbox" class="servicios" data-precio="5000" value="Perfilado de cejas"> Perfilado de cejas ($5.000)</label><br>
-    <label><input type="checkbox" class="servicios" data-precio="7000" value="Nutricion y lavado"> Nutricion y lavado ($7.000)</label><br>
-    <a href="#" id="botonSiguiente3" class="boton">Solicitar turno</a>
-  </section>
+  <!-- seleccion de servicios -->
+ <section id="flyerServicios" class="flyerServicios" style="display:none;">
+  <h2>Seleccionar servicios</h2>
+  <div id="listaCheckboxServicios"></div>
+
+  <a href="#" id="botonSiguiente3" class="boton">Solicitar turno</a>
+</section>
+
 
 <!--paso 4: resumen del turno-->
   <section id="resumenTurno" style="display:none;">

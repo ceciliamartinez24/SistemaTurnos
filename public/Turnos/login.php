@@ -1,9 +1,12 @@
 <?php
+session_start();
 $conexion = new mysqli("localhost", "root", "", "sistema_turnos");
 
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
+
+$mensaje = '';
 
 if (isset($_POST['ingresar'])) {
     $usuario = $_POST['usuario'];
@@ -19,17 +22,18 @@ if (isset($_POST['ingresar'])) {
         $row = $resultado->fetch_assoc();
 
         if (password_verify($password, $row['password'])) {
-            echo "Bienvenido, " . $row['usuario'];
+            $_SESSION['admin'] = $row['usuario'];
+            header("Location: panelAdmin.php"); 
+            exit();
         } else {
-            echo "Contraseña incorrecta";
+            $mensaje = "Contraseña incorrecta.";
         }
     } else {
-        echo "Usuario no encontrado";
+        $mensaje = "Usuario no encontrado.";
     }
 
     $stmt->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,6 +44,8 @@ if (isset($_POST['ingresar'])) {
 </head>
 <body>
   <form action="login.php" method="POST">
+    <h2>Iniciar sesión</h2>
+    <?php if (!empty($mensaje)) echo "<p style='color:red;'>$mensaje</p>"; ?>
     <input type="text" name="usuario" placeholder="Usuario" required>
     <input type="password" name="password" placeholder="Contraseña" required>
     <button type="submit" name="ingresar">Ingresar</button>
@@ -47,5 +53,3 @@ if (isset($_POST['ingresar'])) {
   </form>
 </body>
 </html>
-
-

@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f3f0f9; /* lavanda muy claro */
+}
+
+h1, h2 {
+  color: #5e4b8b; /* lavanda profundo */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(94, 75, 139, 0.1);
+}
+
+th {
+  background-color: #dcd0ff; /* lavanda suave */
+  color: #4b3c72;
+}
+
+td {
+  background-color: #f7f5fc;
+  color: #4b3c72;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #cbbbe2;
+  text-align: left;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #a78bfa; /* lavanda vibrante */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #7c5fe9; /* lavanda más intenso */
+}

@@ -23,3 +23,19 @@ CREATE TABLE turnos (
 
 //agregar en la tabla turnos: 
 ALTER TABLE turnos ADD COLUMN email_cliente VARCHAR(255);
+
+//tabla nueva de servicios
+CREATE TABLE servicios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  precio DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+//tabla que vincula turno cpn uno o mas servicios
+CREATE TABLE turno_servicio (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  turno_id INT NOT NULL,
+  servicio_id INT NOT NULL,
+  FOREIGN KEY (turno_id) REFERENCES turnos(id) ON DELETE CASCADE,
+  FOREIGN KEY (servicio_id) REFERENCES servicios(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
