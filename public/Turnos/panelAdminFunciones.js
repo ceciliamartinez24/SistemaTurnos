@@ -1,20 +1,11 @@
-let tablaVisible = false; // Estado inicial de visibilidad
+let tablaVisible = false;
 
 function mostrarTurnos() {
   const tabla = document.getElementById("tablaTurnos");
 
-  // Si ya está visible, ocultamos
-  if (tablaVisible) {
-    tabla.innerHTML = "";
-    tablaVisible = false;
-    return;
-  }
-
-  // Si no está visible, lo mostramos
   fetch("acciones.php?accion=listar_turnos")
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       if (!tabla) {
         console.error("No se encontró el contenedor #tablaTurnos");
         return;
@@ -38,23 +29,43 @@ function mostrarTurnos() {
           `).join("") + "</table>";
       }
 
-      tablaVisible = true; // ahora está visible
+      tablaVisible = true;
     })
     .catch(error => {
       console.error("Error al cargar los turnos:", error);
-      if (tabla) {
-        tabla.innerHTML = "<p>Error al cargar los turnos.</p>";
-      }
+      tabla.innerHTML = "<p>Error al cargar los turnos.</p>";
     });
 }
 
+function ocultarTurnos() {
+  const tabla = document.getElementById("tablaTurnos");
+  if (tabla) tabla.innerHTML = "";
+  tablaVisible = false;
+}
+
+function toggleTurnos() {
+  if (tablaVisible) {
+    ocultarTurnos();
+  } else {
+    mostrarTurnos();
+  }
+}
+function toggleTurnos() {
+  if (tablaVisible) {
+    const tabla = document.getElementById("tablaTurnos");
+    if (tabla) tabla.innerHTML = "";
+    tablaVisible = false;
+  } else {
+    mostrarTurnos(); // carga y deja tablaVisible en true
+  }
+}
 function cancelarTurno(id) {
   if (confirm("¿Estás segura de cancelar este turno?")) {
-    fetch(`acciones.php?accion=cancelar_turno&id=${id}`) // ← corregido 'action' → 'accion'
+    fetch(`acciones.php?accion=cancelar_turno&id=${id}`)
       .then(res => res.text())
       .then(msg => {
         alert(msg);
-        mostrarTurnos(); // recarga la tabla sin refrescar toda la página
+        mostrarTurnos(true); // recarga sin cerrar
       })
       .catch(error => {
         console.error("Error al cancelar el turno:", error);

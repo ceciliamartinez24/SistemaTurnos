@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmación de turno</title>
+  <link rel="stylesheet" href="css/estilosTurnoConfirmado.css">
+</head>
+<body>
+
 <?php
 require_once "../conexion.php";
 
@@ -76,3 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->close();
 }
+?>
+</body>
+</html>

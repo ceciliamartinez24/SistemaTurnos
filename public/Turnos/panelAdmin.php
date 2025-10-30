@@ -12,22 +12,21 @@ include '../conexion.php';
 <head>
   <meta charset="UTF-8">
   <title>Panel de Administración</title>
-  <link rel="stylesheet" href="estilosAdmin.css">
+  <link rel="stylesheet" href="css/estilosAdmin.css">
 </head>
 <body>
   <h1>Bienvenido, <?php echo $_SESSION['admin']; ?></h1>
 
-  <section>
-<button onclick="mostrarTurnos()">Turnos agendados</button>
-<div id="turnosContainer"></div>
+<section>
+  <div class="botones-panel">
+    <button onclick="toggleTurnos()">Turnos agendados</button>
+    <button onclick="mostrarServicios()">Servicios disponibles</button>
+  </div>
 
-    <div id="tablaTurnos"></div>
-  </section>
-
-<button onclick="mostrarServicios()">Servicios disponibles</button>
-<div id="serviciosContainer" style="margin-top: 20px;"></div>
-
-
+  <div id="turnosContainer"></div>
+  <div id="tablaTurnos"></div>
+  <div id="serviciosContainer" style="margin-top: 20px;"></div>
+</section>
 
  <a href="../logout.php">Cerrar sesión</a>
 <script>
