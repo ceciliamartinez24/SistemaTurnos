@@ -16,7 +16,7 @@
    <main>
   <!--pantalla inicial-->
   <section id="inicio">
-  <h1>Bienvenido a Agenda tu look</h1>
+  <h1>Bienvenido</h1>
   <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
   <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
   </section>
@@ -41,7 +41,13 @@
   <section id="seleccionarFecha" class="columnaIzquierda" style="display:none">
     <div class="calendario">
       <h2>Seleccionar fecha</h2>
-      <input type="date" id="fechaTurno">
+      <input type="date" id="fechaTurno" name="fechaTurno">
+      <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hoy = new Date().toISOString().split("T")[0];
+    document.getElementById("fechaTurno").setAttribute("min", hoy);
+  });
+</script>
     </div>
 
     <div class="calendario">

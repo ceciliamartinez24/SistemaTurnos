@@ -19,6 +19,17 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
+if (isset($_POST['fechaTurno'])) {
+  $fechaTurno = $_POST['fechaTurno'];
+  $hoy = date("Y-m-d");
+
+  if ($fechaTurno < $hoy) {
+    echo "La fecha seleccionada no puede ser anterior a hoy.";
+    exit();
+  }
+
+  // continuar con el registro del turno...
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'] ?? '';
     $telefono = $_POST['telefono'] ?? '';
