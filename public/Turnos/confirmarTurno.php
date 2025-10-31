@@ -62,7 +62,7 @@ if ($stmt->execute()) {
 
     $mail->send();
 
-    // --- MOSTRAR PANTALLA DE ÉXITO ---
+    // --- MOSTRAR PANTALLA DE EXITO ---
     echo '
     <!DOCTYPE html>
     <html lang="es">
@@ -94,7 +94,7 @@ if ($stmt->execute()) {
     <body>
         <div class="card">
             <h1>No se pudo enviar el correo</h1>
-            <p>El turno se guardó correctamente, pero el email no pudo enviarse.</p>
+            <p>El turno se guardo correctamente, pero el email no pudo enviarse.</p>
             <a href="index.php">Volver al inicio</a>
         </div>
     </body>

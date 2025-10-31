@@ -38,14 +38,6 @@ position: relative;
 z-index: 1;
 }
 
-.bloque-formulario {
-background-color: #fff9ff;
-padding: 30px 40px;
-border-radius: 12px;
-box-shadow: 0 0 12px rgba(108, 79, 141, 0.1);
-width: 100%;
-}
-
 .bloque-formulario h2,
 .bloque-formulario h3 {
 text-align: center;
@@ -133,3 +125,15 @@ padding: 20px;
   width: 45%; /* opcional: los hace más parejos */
   text-align: center;
 }
+
+#botonAdministrador {
+  position: absolute;
+  top: 0;           /* pegado arriba */
+  left: 0;          /* pegado a la izquierda */
+  margin: 5px;      /* un pequeño espacio para que no toque el borde exacto */
+  padding: 0.25rem 0.5rem;  /* tamaño muy pequeño */
+  font-size: 0.75rem;       /* texto más pequeño */
+  z-index: 2;       /* sobre el fondo */
+}
+
+

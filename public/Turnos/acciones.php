@@ -7,10 +7,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Conexión a la base de datos
+// conexionn a la bdd
 include '../conexion.php';
-
-// Corrección: usar 'accion' en lugar de 'action'
 $accion = $_GET['accion'] ?? '';
 //echo "Valor de \$accion: $accion<br>";
 
