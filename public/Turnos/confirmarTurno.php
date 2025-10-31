@@ -6,7 +6,7 @@ require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 require 'PHPMailer/Exception.php';
 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 $response = ['status' => 'error', 'message' => 'Error desconocido'];
 
@@ -62,14 +62,23 @@ if ($stmt->execute()) {
     ";
     $mail->send();
 
+    // Mostrar HTML además del JSON
+    echo "<h2>Turno confirmado</h2>";
+    echo "<p><strong>Nombre:</strong> $nombre</p>";
+    echo "<p><strong>Teléfono:</strong> $telefono</p>";
+    echo "<p><strong>Email:</strong> $email</p>";
+    echo "<p><strong>Fecha:</strong> $fecha</p>";
+    echo "<p><strong>Hora:</strong> $hora</p>";
+    echo "<p><strong>Servicios:</strong> $servicios</p>";
+    echo "<p><strong>Total:</strong> $$total</p>";
+
     $response['status'] = 'success';
     $response['message'] = 'Turno confirmado y correo enviado.';
   } catch (Exception $e) {
     $response['message'] = 'Turno guardado pero no se pudo enviar el correo: ' . $mail->ErrorInfo;
   }
 } else {
+  echo "<h2>Error al guardar el turno</h2>";
+  echo "<p>" . $mysqli->error . "</p>";
   $response['message'] = 'Error al guardar el turno: ' . $mysqli->error;
 }
-
-$stmt->close();
-echo json_encode($response);
