@@ -127,13 +127,28 @@ padding: 20px;
 }
 
 #botonAdministrador {
-  position: absolute;
-  top: 0;           /* pegado arriba */
-  left: 0;          /* pegado a la izquierda */
-  margin: 5px;      /* un pequeño espacio para que no toque el borde exacto */
-  padding: 0.25rem 0.5rem;  /* tamaño muy pequeño */
+  position: fixed;   /* fijo en la ventana */
+  top: 5px;          /* distancia desde el borde superior */
+  left: 5px;         /* distancia desde el borde izquierdo */
+  padding: 0.25rem 0.5rem;  /* más pequeño */
   font-size: 0.75rem;       /* texto más pequeño */
-  z-index: 2;       /* sobre el fondo */
+  z-index: 9999;     /* siempre encima de todo */
+}
+
+#botonSolicitar {
+  padding: 1rem 2rem;       /* más grande */
+  font-size: 1.2rem;        /* texto más grande */
+  border-radius: 50px;      /* bordes bien redondeados */
+  background-color: #b07ec7; /* color llamativo */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s; /* animación */
+}
+
+#botonSolicitar:hover {
+  background-color: #9c1ad1; /* cambio de color al pasar el mouse */
+  transform: scale(1.05);    /* efecto de agrandarse un poco */
 }
 
 
