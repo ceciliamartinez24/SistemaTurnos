@@ -9,14 +9,14 @@
 <body>
 
   <header>
-    <h1>Agenda tu look</h1>
+    <h1>Bienvenido a Agenda tu look</h1>
   </header>
 
   <main class="contenedor-formularios">
     
     <!-- Pantalla inicial -->
     <section id="inicio" class="bloque-formulario">
-      <h2>Bienvenido</h2>
+      
       <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
       <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
     </section>
