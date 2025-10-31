@@ -1,5 +1,5 @@
 body {
-  background: url('../img/estetica.jpg') center center / cover no-repeat fixed;
+  background: url('../img/fondo.jpg') center center / cover no-repeat fixed;
   /* centrado exacto y mantiene proporción */
   background-color: #f5e9ff;
   color: #4b3b5a;
@@ -120,4 +120,16 @@ padding: 20px;
 .bloque-formulario {
 padding: 20px;
 }
+}
+
+.contenedor-botones {
+  display: flex;
+  justify-content: space-between; /* uno a la izquierda y otro a la derecha */
+  width: 100%;
+  margin-top: 20px;
+}
+
+.contenedor-botones .boton {
+  width: 45%; /* opcional: los hace más parejos */
+  text-align: center;
 }
