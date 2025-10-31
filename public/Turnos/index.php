@@ -41,7 +41,7 @@
     <section id="seleccionarFecha" class="bloque-formulario" style="display:none;">
       <h2>Seleccionar fecha y hora</h2>
       <label for="fechaTurno">Fecha:</label>
-      <input type="date" id="fechaTurno" name="fechaTurno">
+      <input type="date" id="fechaTurno" name="fechaTurno" min="<?= date('Y-m-d') ?>">
       <label for="horaTurno">Hora:</label>
       <select id="horaTurno">
         <option value="">-- Elegí una hora --</option>
