@@ -22,11 +22,19 @@ include '../conexion.php';
     <button onclick="toggleTurnos()">Turnos agendados</button>
     <button onclick="mostrarServicios()">Servicios disponibles</button>
   </div>
+  <div id="serviciosContainer" style="margin-top: 2rem;"></div>
+  <div id="turnosContainer" style="display:none;">
 
-  <div id="turnosContainer"></div>
+  <div id="filtroContainer">
+    <label for="filtroFecha">Filtrar por fecha:</label>
+    <input type="date" id="filtroFecha">
+    <button onclick="filtrarPorFecha()">Buscar</button>
+    <button onclick="mostrarTurnos()">Ver todos</button>
+  </div>
+
   <div id="tablaTurnos"></div>
-  <div id="serviciosContainer" style="margin-top: 20px;"></div>
-</section>
+</div>
+
 
  <a href="../logout.php">Cerrar sesión</a>
 <script>

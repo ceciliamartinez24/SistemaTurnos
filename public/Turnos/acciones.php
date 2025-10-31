@@ -85,3 +85,61 @@ if ($accion === 'agregar_servicio' && isset($_GET['nombre'], $_GET['precio'])) {
   exit();
 }
 
+if ($_GET['accion'] === 'filtrar_turnos_por_fecha') {
+  $fecha = $_GET['fecha'];
+  $stmt = $mysqli->prepare("SELECT * FROM turnos WHERE fecha_turno = ? ORDER BY hora_turno ASC");
+  $stmt->bind_param("s", $fecha);
+  $stmt->execute();
+  $resultado = $stmt->get_result();
+  $turnos = $resultado->fetch_all(MYSQLI_ASSOC);
+  echo json_encode($turnos);
+  exit;
+}
+
+if ($accion === 'horarios_disponibles' && isset($_GET['fecha'])) {
+  $fecha = $_GET['fecha'];
+  $query = "SELECT hora_turno, COUNT(*) as cantidad FROM turnos WHERE fecha_turno = ? GROUP BY hora_turno";
+  $stmt = $mysqli->prepare($query);
+  $stmt->bind_param("s", $fecha);
+  $stmt->execute();
+  $resultado = $stmt->get_result();
+
+  $horarios = [];
+  while ($row = $resultado->fetch_assoc()) {
+    $horarios[$row['hora_turno']] = $row['cantidad'];
+  }
+
+  header('Content-Type: application/json');
+  echo json_encode($horarios);
+  exit;
+}
+if ($accion === 'agendar_turno' && isset($_GET['fecha'], $_GET['hora'], $_GET['cliente'], $_GET['servicios'], $_GET['total'])) {
+  $fecha = $_GET['fecha'];
+  $hora = $_GET['hora'];
+
+  // Validación: ¿ya hay 2 turnos en ese horario?
+  $stmt = $mysqli->prepare("SELECT COUNT(*) FROM turnos WHERE fecha_turno = ? AND hora_turno = ?");
+  $stmt->bind_param("ss", $fecha, $hora);
+  $stmt->execute();
+  $stmt->bind_result($cantidad);
+  $stmt->fetch();
+  $stmt->close();
+
+  if ($cantidad >= 2) {
+    echo "Horario no disponible";
+    exit;
+  }
+
+  // Guardar el turno si hay disponibilidad
+  $cliente = $_GET['cliente'];
+  $servicios = $_GET['servicios'];
+  $total = $_GET['total'];
+
+  $stmt = $mysqli->prepare("INSERT INTO turnos (fecha_turno, hora_turno, nombre_cliente, servicios, total) VALUES (?, ?, ?, ?, ?)");
+  $stmt->bind_param("ssssd", $fecha, $hora, $cliente, $servicios, $total);
+  echo $stmt->execute() ? "Turno agendado correctamente" : "Error al agendar el turno";
+  $stmt->close();
+  exit;
+}
+
+

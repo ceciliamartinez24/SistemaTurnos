@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,45 +12,37 @@
     <h1>Agenda tu look</h1>
   </header>
 
-   <main>
-  <!--pantalla inicial-->
-  <section id="inicio">
-  <h1>Bienvenido</h1>
-  <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
-  <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
-  </section>
+  <main class="contenedor-formularios">
+    
+    <!-- Pantalla inicial -->
+    <section id="inicio" class="bloque-formulario">
+      <h2>Bienvenido</h2>
+      <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
+      <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
+    </section>
 
-  <!--paso 1: datos del cliemte-->
-  <section id="solicitudTurno" style="display:none;">
-  <div class="datosCliente">
-    <h2>Ingrese sus datos</h2>
-    <form id="formularioCliente">
-        <label>Nombre y apellido:</label>
+    <!-- Paso 1: Datos del cliente -->
+    <section id="solicitudTurno" class="bloque-formulario" style="display:none;">
+      <h2>Ingrese sus datos</h2>
+      <form id="formularioCliente">
+        <label for="nombreCliente">Nombre y apellido:</label>
         <input type="text" id="nombreCliente" required>
-        <label>Numero de celular:</label>
+
+        <label for="telefonoCliente">Número de celular:</label>
         <input type="tel" id="telefonoCliente">
-        <label>Correo electronico:</label>
+
+        <label for="emailCliente">Correo electrónico:</label>
         <input type="email" id="emailCliente">
-    </form>
-     <button type="button" id="botonSiguiente1" class="boton">Siguiente</button>
-  </div>
-  </section>
+      </form>
+      <button type="button" id="botonSiguiente1" class="boton">Siguiente</button>
+    </section>
 
-  <!-- paso 2: seleccionar fecha y hora -->
-  <section id="seleccionarFecha" class="columnaIzquierda" style="display:none">
-    <div class="calendario">
-      <h2>Seleccionar fecha</h2>
+    <!-- Paso 2: Selección de fecha y hora -->
+    <section id="seleccionarFecha" class="bloque-formulario" style="display:none;">
+      <h2>Seleccionar fecha y hora</h2>
+      <label for="fechaTurno">Fecha:</label>
       <input type="date" id="fechaTurno" name="fechaTurno">
-      <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const hoy = new Date().toISOString().split("T")[0];
-    document.getElementById("fechaTurno").setAttribute("min", hoy);
-  });
-</script>
-    </div>
-
-    <div class="calendario">
-      <h2>Seleccionar hora</h2>
+      <label for="horaTurno">Hora:</label>
       <select id="horaTurno">
         <option value="">-- Elegí una hora --</option>
         <option value="09:00">09:00</option>
@@ -65,33 +56,29 @@
         <option value="19:00">19:00</option>
         <option value="20:00">20:00</option>
       </select>
-
       <button id="botonSiguiente2" class="boton">Siguiente</button>
-    </div>
-  </section>
+    </section>
 
-  <!-- seleccion de servicios -->
- <section id="flyerServicios" class="flyerServicios" style="display:none;">
-  <h2>Seleccionar servicios</h2>
-  <div id="listaCheckboxServicios"></div>
+    <!-- Paso 3: Selección de servicios -->
+    <section id="flyerServicios" class="bloque-formulario" style="display:none;">
+      <h2>Seleccionar servicios</h2>
+      <div id="listaCheckboxServicios"></div>
+      <a href="#" id="botonSiguiente3" class="boton">Solicitar turno</a>
+    </section>
 
-  <a href="#" id="botonSiguiente3" class="boton">Solicitar turno</a>
-</section>
+    <!-- Paso 4: Resumen del turno -->
+    <section id="resumenTurno" class="bloque-formulario" style="display:none;">
+      <h2>Resumen de su turno</h2>
+      <p><strong>Nombre:</strong> <span id="nombreResumen"></span></p>
+      <p><strong>Teléfono:</strong> <span id="telefonoResumen"></span></p>
+      <p><strong>Email:</strong> <span id="emailResumen"></span></p>
+      <p><strong>Fecha seleccionada:</strong> <span id="fechaSeleccionada"></span></p>
+      <p><strong>Hora seleccionada:</strong> <span id="horaSeleccionada"></span></p>
+      <p><strong>Servicios:</strong></p>
+      <ul id="listaServicios"></ul>
+      <p><strong>Total:</strong> $<span id="total"></span></p>
 
-
-<!--paso 4: resumen del turno-->
-  <section id="resumenTurno" style="display:none;">
-  <h3>Resumen de su turno:</h3>
-  <p><stong>Nombre:</stong> <span id="nombreResumen"></span></p>
-  <p><stong>Telefono:</stong> <span id="telefonoResumen"></span></p>
-  <p><strong>Email:</strong> <span id="emailResumen"></span></p>
-  <p><strong>Fecha seleccionada:</strong> <span id="fechaSeleccionada"></span></p>
-  <p><strong>Hora seleccionada:</strong> <span id="horaSeleccionada"></span></p>
-  <p><strong>Servicios:</strong></p>
-  <ul id="listaServicios"></ul>
-  <p><strong>Total:</strong> $<span id="total"></span></p>
-
-  <form action="confirmarTurno.php" method="POST">
+      <form action="confirmarTurno.php" method="POST">
         <input type="hidden" name="nombre" id="nombreHidden">
         <input type="hidden" name="telefono" id="telefonoHidden">
         <input type="hidden" name="email" id="emailHidden">
@@ -99,10 +86,39 @@
         <input type="hidden" name="hora" id="horaHidden">
         <input type="hidden" name="servicios" id="serviciosHidden">
         <input type="hidden" name="total" id="totalHidden">
-        <button type="submit">Confirmar turno</button>
+        <button type="submit" class="boton">Confirmar turno</button>
       </form>
-</section>
-   </main>
+    </section>
+
+  </main>
+  
+
+  <script>
+    fetch(formulario.action, {
+  method: 'POST',
+  body: datos
+})
+.then(response => response.json())
+.then(data => {
+  if (data.status === 'success') {
+    alert('✅ ' + data.message);
+    document.querySelectorAll('.bloque-formulario').forEach(b => b.style.display = 'none');
+    document.getElementById('inicio').style.display = 'block';
+  } else {
+    alert('❌ ' + data.message);
+  }
+})
+.catch(error => {
+  console.error('Error al enviar el turno:', error);
+  alert('❌ No se pudo enviar el turno. Intente más tarde.');
+});
+    document.addEventListener("DOMContentLoaded", function() {
+      const hoy = new Date().toISOString().split("T")[0];
+      document.getElementById("fechaTurno").setAttribute("min", hoy);
+    });
+  </script>
+  <script src="seleccion.js"></script>
+
+
 </body>
 </html>
-<script src="seleccion.js"></script>
