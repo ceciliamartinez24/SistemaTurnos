@@ -91,32 +91,7 @@
     </section>
 
   </main>
-  
 
-  <script>
-    fetch(formulario.action, {
-  method: 'POST',
-  body: datos
-})
-.then(response => response.json())
-.then(data => {
-  if (data.status === 'success') {
-    alert('✅ ' + data.message);
-    document.querySelectorAll('.bloque-formulario').forEach(b => b.style.display = 'none');
-    document.getElementById('inicio').style.display = 'block';
-  } else {
-    alert('❌ ' + data.message);
-  }
-})
-.catch(error => {
-  console.error('Error al enviar el turno:', error);
-  alert('❌ No se pudo enviar el turno. Intente más tarde.');
-});
-    document.addEventListener("DOMContentLoaded", function() {
-      const hoy = new Date().toISOString().split("T")[0];
-      document.getElementById("fechaTurno").setAttribute("min", hoy);
-    });
-  </script>
   <script src="seleccion.js"></script>
 
 

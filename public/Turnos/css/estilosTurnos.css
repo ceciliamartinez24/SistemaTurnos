@@ -1,127 +1,123 @@
-/* Reset y fuente */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-/* Fondo lavanda suave */
 body {
-  background: linear-gradient(135deg, #f5e9ff, #e6d4f5);
+  background: url('../img/estetica.jpg') center center / cover no-repeat fixed;
+  /* centrado exacto y mantiene proporción */
+  background-color: #f5e9ff;
   color: #4b3b5a;
   padding: 40px 20px;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Encabezado */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* equivale a top:0; left:0; width:100%; height:100%; */
+  background: rgba(255, 255, 255, 0.15); /* menos blanco → imagen más visible */
+  z-index: 0;
+}
 header {
-  background: #b987b5;
-  color: white;
-  text-align: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 0 0 12px 12px;
+background: #b987b5;
+color: white;
+text-align: center;
+padding: 1rem 2rem;
+box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+border-radius: 0 0 12px 12px;
+position: relative;
+z-index: 1;
 }
 
-/* Contenedor principal */
 main.contenedor-formularios {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  max-width: 700px;
-  margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 30px;
+max-width: 700px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
 }
 
-/* Bloques de formulario */
 .bloque-formulario {
-  background-color: #fff9ff;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(108, 79, 141, 0.1);
-  width: 100%;
+background-color: #fff9ff;
+padding: 30px 40px;
+border-radius: 12px;
+box-shadow: 0 0 12px rgba(108, 79, 141, 0.1);
+width: 100%;
 }
 
-/* Títulos */
 .bloque-formulario h2,
 .bloque-formulario h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #6c4f8d;
+text-align: center;
+margin-bottom: 20px;
+color: #6c4f8d;
 }
 
-/* Etiquetas */
 label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #5a4a6f;
+display: block;
+margin-bottom: 6px;
+font-weight: 600;
+color: #5a4a6f;
 }
 
-/* Campos */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="date"],
 select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 16px;
-  border: 1px solid #d3bce6;
-  border-radius: 6px;
-  background-color: #fdfaff;
-  font-size: 1rem;
-  color: #4b3b5a;
+width: 100%;
+padding: 10px;
+margin-bottom: 16px;
+border: 1px solid #d3bce6;
+border-radius: 6px;
+background-color: #fdfaff;
+font-size: 1rem;
+color: #4b3b5a;
 }
 
-/* Checkbox servicios */
 .servicios {
-  background: #f3e8ff;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 6px;
-  display: block;
+background: #f3e8ff;
+padding: 0.5rem;
+margin: 0.5rem 0;
+border-radius: 6px;
+display: block;
 }
 
-/* Botones */
 .boton {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.7rem 1.2rem;
-  background: #ae1ff0;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-  transition: background 0.3s;
-  cursor: pointer;
+display: inline-block;
+margin-top: 1rem;
+padding: 0.7rem 1.2rem;
+background: #ae1ff0;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+border: none;
+font-size: 1rem;
+transition: background 0.3s;
+cursor: pointer;
 }
 
 .boton:hover {
-  background: #9c1ad1;
+background: #9c1ad1;
 }
 
-/* Lista de servicios */
 #listaServicios li {
-  margin-bottom: 6px;
-  color: #4b3b5a;
+margin-bottom: 6px;
+color: #4b3b5a;
 }
 
-/* Total */
 #total {
-  font-weight: bold;
-  color: #6c4f8d;
-  margin-top: 10px;
+font-weight: bold;
+color: #6c4f8d;
+margin-top: 10px;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
-  main.contenedor-formularios {
-    padding: 20px;
-  }
+main.contenedor-formularios {
+padding: 20px;
+}
 
-  .bloque-formulario {
-    padding: 20px;
-  }
+.bloque-formulario {
+padding: 20px;
+}
 }
