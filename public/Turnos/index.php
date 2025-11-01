@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda tu look</title>
-  <link rel="stylesheet" href="Css/estilosTurnos.css">
+  <link rel="stylesheet" href="css/estilosTurnos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
   <header>
-    <h1>Bienvenido a Agenda tu look</h1>
+    <h1>Agenda tu look</h1>
   </header>
 
   <main class="contenedor-formularios">
@@ -67,7 +69,7 @@
     </section>
 
     <!-- Paso 4: Resumen del turno -->
-    <section id="resumenTurno" class="bloque-formulario" style="display:none;">
+   <section id="resumenTurno" class="bloque-formulario resumen-lindo" style="display:none;">
       <h2>Resumen de su turno</h2>
       <p><strong>Nombre:</strong> <span id="nombreResumen"></span></p>
       <p><strong>Teléfono:</strong> <span id="telefonoResumen"></span></p>

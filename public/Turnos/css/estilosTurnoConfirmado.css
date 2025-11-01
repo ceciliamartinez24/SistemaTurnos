@@ -1,6 +1,6 @@
 body { 
     font-family: Arial, sans-serif;
-    background-color: #f5e9ff;
+    background-color: #b88adf;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
 }
 
 .card {
-    background: white;
+    background: rgb(229, 229, 229);
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -41,3 +41,4 @@ a {
 a:hover {
     background: #a875ff;
 }
+

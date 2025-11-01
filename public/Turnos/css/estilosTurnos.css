@@ -26,10 +26,16 @@ border-radius: 0 0 12px 12px;
 position: relative;
 z-index: 1;
 }
+
 header h1 {
-  font-family: 'Allura', cursive;
-  font-size: 2.2rem;
-  font-weight: 400;
+  font-family: inherit;      /* misma que los títulos de los formularios */
+  font-size: 3rem;           /* grande y sobresaliente */
+  font-weight: 400;           /* ligera y delicada */
+  font-style: italic;         /* cursiva */
+  color: #6c4f8d;            /* violeta suave */
+  text-align: center;
+  margin: 1rem 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* sutil sombra para destacar */
 }
 
 
@@ -43,6 +49,20 @@ margin: 0 auto;
 position: relative;
 z-index: 1;
 }
+
+/* Aplica el fondo lila solo a los formularios que NO sean el inicio */
+.bloque-formulario:not(#inicio) {
+  background-color: #e6ccff; /* fondo lila suave */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
 
 .bloque-formulario h2,
 .bloque-formulario h3 {
@@ -136,14 +156,31 @@ padding: 20px;
   position: fixed;   /* fijo en la ventana */
   top: 5px;          /* distancia desde el borde superior */
   left: 5px;         /* distancia desde el borde izquierdo */
-  padding: 0.25rem 0.5rem;  /* más pequeño */
-  font-size: 0.75rem;       /* texto más pequeño */
-  z-index: 9999;     /* siempre encima de todo */
+  padding: 0.4rem 0.8rem;  /* un poco más grande para que se vea mejor */
+  font-size: 0.8rem;       /* texto un poco más legible */
+  font-family: inherit;    /* misma fuente que el título del header */
+  font-style: italic;      /* cursiva igual que el título */
+  font-weight: 400;        /* ligera y elegante */
+  border-radius: 20px;     /* bordes redondeados */
+  background-color: #a17ec9; /* color suave lavanda/violeta */
+  color: white;            /* texto blanco */
+  border: none;            /* sin borde */
+  cursor: pointer;         /* cambia el cursor al pasar */
+  z-index: 9999;           /* siempre encima */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* efecto suave */
+}
+
+#botonAdministrador:hover {
+  background-color: #9c1ad1; /* cambio de color al pasar el mouse */
+  transform: scale(1.05);    /* efecto de agrandarse un poco */
 }
 
 #botonSolicitar {
   padding: 1rem 2rem;       /* más grande */
   font-size: 1.2rem;        /* texto más grande */
+  font-family: inherit;     /* misma fuente que el título del header */
+  font-style: italic;       /* cursiva igual que el título */
+  font-weight: 400;         /* ligera y elegante */
   border-radius: 50px;      /* bordes bien redondeados */
   background-color: #b07ec7; /* color llamativo */
   color: white;
@@ -155,6 +192,183 @@ padding: 20px;
 #botonSolicitar:hover {
   background-color: #9c1ad1; /* cambio de color al pasar el mouse */
   transform: scale(1.05);    /* efecto de agrandarse un poco */
+}
+
+
+/* --- Sección de resumen de turno mejorada --- */
+#resumenTurno {
+  background-color: #f8f2ff; /* lila clarito */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #4b3b5a;
+}
+
+#resumenTurno h2 {
+  text-align: center;
+  color: #6c4f8d;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #d9b3ff;
+  padding-bottom: 0.5rem;
+}
+
+/* Contenedor general: divide en dos columnas */
+.resumen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 1.5rem;
+}
+
+/* Secciones dentro del resumen */
+.resumen-datos, .resumen-turno {
+  background-color: #ffffffb8; /* fondo blanco translúcido */
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.resumen-datos h3, .resumen-turno h3 {
+  color: #8b65b0;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid #d6b4f2;
+  padding-bottom: 4px;
+}
+
+/* Párrafos y listas */
+#resumenTurno p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+#resumenTurno ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+#resumenTurno ul li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+#resumenTurno ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #9c1ad1;
+  font-weight: bold;
+}
+
+/* Total destacado */
+#resumenTurno #total {
+  display: inline-block;
+  font-size: 1.1rem;
+  color: #6c4f8d;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Responsive para pantallas chicas */
+@media (max-width: 600px) {
+  .resumen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ✨ Botones del formulario (excepto los del inicio) */
+.bloque-formulario:not(#inicio) .boton {
+  display: inline-block;
+  background-color: #b085f5;
+  color: white;
+  font-family: inherit; /* misma tipografía que el formulario */
+  font-size: 1rem;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(150, 100, 200, 0.3);
+}
+
+/* Efecto hover */
+.bloque-formulario:not(#inicio) .boton:hover {
+  background-color: #a06ae3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(150, 100, 200, 0.4);
+}
+
+/* Espaciado para que no queden pegados entre sí */
+.bloque-formulario:not(#inicio) .boton + .boton {
+  margin-left: 10px;
+}
+
+/* Checkbox + label alineados en línea, sin tocar HTML dinámico */
+#listaCheckboxServicios input[type="checkbox"] {
+  vertical-align: middle;
+  margin-right: 8px; /* espacio entre checkbox y texto */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b07ec7;
+  border-radius: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  position: relative;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+#listaCheckboxServicios input[type="checkbox"]:checked {
+  background-color: #9c1ad1;
+  border-color: #9c1ad1;
+}
+
+#listaCheckboxServicios input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Asegura que el label quede al mismo nivel que el checkbox */
+#listaCheckboxServicios label {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  font-family: inherit;
+  color: #4b3b5a;
+}
+
+/* Estilo uniforme para todos los títulos del formulario, respetando la fuente original */
+.bloque-formulario h2 {
+  text-align: center;
+  color: #6a3d9a;
+  margin-bottom: 15px;
+  position: relative;
+  font-family: inherit; /* mantiene la fuente original */
+}
+
+/* Subrayado delicado */
+.bloque-formulario h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #c7aefb;
+  margin: 8px auto 0;
+  border-radius: 1px;
 }
 
 
