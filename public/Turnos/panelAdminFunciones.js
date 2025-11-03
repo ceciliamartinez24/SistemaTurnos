@@ -219,3 +219,139 @@ function filtrarPorFecha() {
       tabla.innerHTML = "<p>Error al filtrar los turnos.</p>";
     });
 }
+
+function toggleHorarios() {
+  const contenedor = document.getElementById("contenedorHorarios");
+  const visible = contenedor.style.display === "block";
+
+  contenedor.style.display = visible ? "none" : "block";
+
+  if (!visible) {
+    mostrarHorarios(); // carga los datos solo si se abre
+  }
+}
+function mostrarHorarios() {
+  fetch("acciones.php?accion=ver_horarios")
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.querySelector("#tablaHorarios tbody");
+      if (!tbody) {
+        console.error("No se encontró la tabla de horarios");
+        return;
+      }
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4">No hay horarios definidos.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(h => `
+        <tr id="fila-horario-${h.id}">
+          <td>${h.dia}</td>
+          <td>${h.hora_inicio}</td>
+          <td>${h.hora_fin}</td>
+          <td>
+            <button onclick="activarEdicionHorario(${h.id}, '${h.dia}', '${h.hora_inicio}', '${h.hora_fin}')">Editar</button>
+            <button onclick="eliminarHorario(${h.id})">Elimnar</button>
+          </td>
+        </tr>
+      `).join("");
+    })
+    .catch(error => {
+      console.error("Error al cargar horarios:", error);
+      tbody.innerHTML = `<tr><td colspan="4">Error al cargar los horarios.</td></tr>`;
+    });
+}
+
+function eliminarHorario(id) {
+  if (!confirm("¿Eliminar este horario?")) return;
+
+  fetch(`acciones.php?accion=eliminar_horario&id=${id}`)
+    .then(res => res.text())
+    .then(msg => {
+      alert(msg);
+      mostrarHorarios();
+    })
+    .catch(error => {
+      console.error("Error al eliminar horario:", error);
+      alert("Hubo un problema al eliminar el horario.");
+    });
+}
+function activarEdicionHorario(id, dia, inicio, fin) {
+  const fila = document.querySelector(`#fila-horario-${id}`);
+  if (!fila) return;
+
+  fila.innerHTML = `
+    <td>
+      <select id="edit-dia-${id}">
+        ${['lunes','martes','miércoles','jueves','viernes','sábado','domingo'].map(d =>
+          `<option value="${d}" ${d === dia ? 'selected' : ''}>${d}</option>`
+        ).join('')}
+      </select>
+    </td>
+    <td><input type="time" id="edit-inicio-${id}" value="${inicio}"></td>
+    <td><input type="time" id="edit-fin-${id}" value="${fin}"></td>
+    <td>
+      <button onclick="guardarHorarioEditado(${id})">Guardar</button>
+      <button onclick="mostrarHorarios()">❌</button>
+    </td>
+  `;
+}
+function guardarHorarioEditado(id) {
+  const dia = document.getElementById(`edit-dia-${id}`).value;
+  const inicio = document.getElementById(`edit-inicio-${id}`).value;
+  const fin = document.getElementById(`edit-fin-${id}`).value;
+
+  if (!dia || !inicio || !fin) {
+    alert("Completá todos los campos");
+    return;
+  }
+  if (inicio >= fin) {
+    alert("La hora de inicio debe ser menor que la hora de fin.");
+    return;
+  }
+
+  fetch(`acciones.php?accion=editar_horario&id=${id}&dia=${dia}&inicio=${inicio}&fin=${fin}`)
+    .then(res => res.text())
+    .then(msg => {
+      alert(msg);
+      mostrarHorarios();
+    })
+    .catch(error => {
+      console.error("Error al guardar horario:", error);
+      alert("Hubo un problema al guardar el horario.");
+    });
+}
+function agregarHorario() {
+  const dia = document.getElementById("nuevoDia").value;
+  const inicio = document.getElementById("nuevoInicio").value;
+  const fin = document.getElementById("nuevoFin").value;
+
+   console.log("Día:", dia);
+  console.log("Inicio:", inicio);
+  console.log("Fin:", fin);
+
+
+  if (!dia || !inicio || !fin) {
+    alert("Completá todos los campos");
+    return;
+  }
+  if (inicio >= fin) {
+    alert("La hora de inicio debe ser menor que la hora de fin.");
+    return;
+  }
+
+  fetch(`acciones.php?accion=guardar_horario&dia=${dia}&inicio=${inicio}&fin=${fin}`)
+    .then(res => res.text())
+    .then(msg => {
+      alert(msg);
+      document.getElementById("nuevoDia").value = "";
+      document.getElementById("nuevoInicio").value = "";
+      document.getElementById("nuevoFin").value = "";
+      mostrarHorarios();
+    })
+    .catch(error => {
+      console.error("Error al agregar horario:", error);
+      alert("Hubo un problema al agregar el horario.");
+    });
+}

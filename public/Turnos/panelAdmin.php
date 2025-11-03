@@ -34,6 +34,41 @@ include '../conexion.php';
 
   <div id="tablaTurnos"></div>
 </div>
+<button onclick="toggleHorarios()">Ver horarios de atención</button>
+
+<div id="contenedorHorarios" style="display:none; margin-top:1em;">
+<div id="formularioHorario" style="margin-bottom: 1em;">
+  <h3>Agregar nuevo horario</h3>
+  <label>Día:
+    <select id="nuevoDia">
+      <option value="">-- Elegí un día --</option>
+      <option value="lunes">Lunes</option>
+      <option value="martes">Martes</option>
+      <option value="miércoles">Miércoles</option>
+      <option value="jueves">Jueves</option>
+      <option value="viernes">Viernes</option>
+      <option value="sábado">Sábado</option>
+      <option value="domingo">Domingo</option>
+    </select>
+  </label>
+  <label>Desde: <input type="time" id="nuevoInicio"></label>
+  <label>Hasta: <input type="time" id="nuevoFin"></label>
+  <button type="button" onclick="agregarHorario()">Agregar</button>
+</div>
+
+  <table id="tablaHorarios">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Desde</th>
+        <th>Hasta</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+</section>
 
 
  <a href="../logout.php">Cerrar sesión</a>

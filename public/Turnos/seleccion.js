@@ -147,3 +147,77 @@ inputFecha.addEventListener("change", () => {
 });
 
 
+function cargarHorariosParaDia(fechaSeleccionada) {
+  const diaNombre = new Date(fechaSeleccionada).toLocaleDateString('es-AR', { weekday: 'long' }).toLowerCase();
+
+  fetch("acciones.php?accion=ver_horarios")
+    .then(res => res.json())
+    .then(data => {
+      const horarios = data.filter(h => h.dia === diaNombre);
+      const selectHora = document.getElementById("horaTurno");
+      selectHora.innerHTML = '<option value="">-- Elegí una hora --</option>';
+
+      horarios.forEach(h => {
+        const inicio = parseInt(h.hora_inicio.split(":")[0]);
+        const fin = parseInt(h.hora_fin.split(":")[0]);
+
+        for (let hora = inicio; hora <= fin; hora++) {
+          const horaStr = hora.toString().padStart(2, "0") + ":00";
+          const option = document.createElement("option");
+          option.value = horaStr;
+          option.textContent = horaStr;
+          selectHora.appendChild(option);
+        }
+      });
+    });
+}
+document.getElementById("fechaTurno").addEventListener("change", cargarHorariosDisponibles);
+
+function cargarHorariosDisponibles() {
+  const fecha = document.getElementById("fechaTurno").value;
+  const selectHora = document.getElementById("horaTurno");
+
+  if (!fecha) {
+    selectHora.innerHTML = `<option value="">-- Elegí una hora --</option>`;
+    return;
+  }
+
+  // Día de la semana en español sin tilde
+  const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  const fechaObj = new Date(fecha + "T00:00:00");
+  const diaSemana = dias[fechaObj.getDay()];
+
+  fetch("acciones.php?accion=ver_horarios")
+    .then(res => res.json())
+    .then(data => {
+      const horarios = data.filter(h => h.dia.toLowerCase() === diaSemana);
+      if (horarios.length === 0) {
+        selectHora.innerHTML = `<option value="">No hay horarios disponibles</option>`;
+        return;
+      }
+
+      const opciones = [];
+
+      horarios.forEach(h => {
+        const [hInicio, mInicio] = h.hora_inicio.split(":").map(Number);
+        const [hFin, mFin] = h.hora_fin.split(":").map(Number);
+
+        let hora = hInicio;
+
+        // Si el inicio tiene minutos, arrancamos desde ahí
+        if (mInicio > 0) hora++;
+
+        while (hora < hFin) {
+          const horaStr = hora.toString().padStart(2, "0");
+          opciones.push(`<option value="${horaStr}:00">${horaStr}:00</option>`);
+          hora++;
+        }
+      });
+
+      selectHora.innerHTML = `<option value="">-- Elegí una hora --</option>` + opciones.join("");
+    })
+    .catch(error => {
+      console.error("Error al cargar horarios:", error);
+      selectHora.innerHTML = `<option value="">Error al cargar horarios</option>`;
+    });
+}

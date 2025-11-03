@@ -140,4 +140,40 @@ if ($accion === 'agendar_turno' && isset($_GET['fecha'], $_GET['hora'], $_GET['c
   exit;
 }
 
+if ($accion === 'ver_horarios') {
+  $result = $mysqli->query("SELECT * FROM horarios_atencion ORDER BY FIELD(dia,'lunes','martes','miércoles','jueves','viernes','sábado','domingo'), hora_inicio");
+  $datos = [];
+  while ($row = $result->fetch_assoc()) {
+    $datos[] = $row;
+  }
+  header('Content-Type: application/json');
+  echo json_encode($datos);
+  exit();
+}
+
+if ($accion === 'eliminar_horario' && isset($_GET['id'])) {
+  $stmt = $mysqli->prepare("DELETE FROM horarios_atencion WHERE id = ?");
+  $stmt->bind_param("i", $_GET['id']);
+  echo $stmt->execute() ? "Horario eliminado" : "Error al eliminar";
+  $stmt->close();
+  exit();
+}
+
+if ($accion === 'editar_horario' && isset($_GET['id'], $_GET['dia'], $_GET['inicio'], $_GET['fin'])) {
+  $stmt = $mysqli->prepare("UPDATE horarios_atencion SET dia = ?, hora_inicio = ?, hora_fin = ? WHERE id = ?");
+  $stmt->bind_param("sssi", $_GET['dia'], $_GET['inicio'], $_GET['fin'], $_GET['id']);
+  echo $stmt->execute() ? "Horario actualizado" : "Error al actualizar";
+  $stmt->close();
+  exit();
+}
+if ($accion === 'guardar_horario' && isset($_GET['dia'], $_GET['inicio'], $_GET['fin'])) {
+  $stmt = $mysqli->prepare("INSERT INTO horarios_atencion (dia, hora_inicio, hora_fin) VALUES (?, ?, ?)");
+  $stmt->bind_param("sss", $_GET['dia'], $_GET['inicio'], $_GET['fin']);
+  echo $stmt->execute() ? "Horario guardado" : "Error al guardar";
+  $stmt->close();
+  exit();
+}
+
+
+
 

@@ -39,3 +39,10 @@ CREATE TABLE turno_servicio (
   FOREIGN KEY (turno_id) REFERENCES turnos(id) ON DELETE CASCADE,
   FOREIGN KEY (servicio_id) REFERENCES servicios(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE horarios_atencion (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  dia ENUM('lunes','martes','miércoles','jueves','viernes','sábado','domingo'),
+  hora_inicio TIME,
+  hora_fin TIME
+);
