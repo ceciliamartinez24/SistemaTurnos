@@ -104,7 +104,8 @@ if ($accion === 'horarios_disponibles' && isset($_GET['fecha'])) {
 
   $horarios = [];
   while ($row = $resultado->fetch_assoc()) {
-    $horarios[$row['hora_turno']] = $row['cantidad'];
+    $horaNormalizada = substr($row['hora_turno'], 0, 5); // "10:00:00" → "10:00"
+    $horarios[$horaNormalizada] = $row['cantidad'];
   }
 
   header('Content-Type: application/json');
@@ -114,6 +115,7 @@ if ($accion === 'horarios_disponibles' && isset($_GET['fecha'])) {
 if ($accion === 'agendar_turno' && isset($_GET['fecha'], $_GET['hora'], $_GET['cliente'], $_GET['servicios'], $_GET['total'])) {
   $fecha = $_GET['fecha'];
   $hora = $_GET['hora'];
+
 
   // Validación: ¿ya hay 2 turnos en ese horario?
   $stmt = $mysqli->prepare("SELECT COUNT(*) FROM turnos WHERE fecha_turno = ? AND hora_turno = ?");
