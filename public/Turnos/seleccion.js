@@ -171,9 +171,10 @@ function cargarHorariosParaDia(fechaSeleccionada) {
       });
     });
 }
+
 document.getElementById("fechaTurno").addEventListener("change", cargarHorariosDisponibles);
 
-function cargarHorariosDisponibles() {
+async function cargarHorariosDisponibles() {
   const fecha = document.getElementById("fechaTurno").value;
   const selectHora = document.getElementById("horaTurno");
 
@@ -187,37 +188,50 @@ function cargarHorariosDisponibles() {
   const fechaObj = new Date(fecha + "T00:00:00");
   const diaSemana = dias[fechaObj.getDay()];
 
-  fetch("acciones.php?accion=ver_horarios")
-    .then(res => res.json())
-    .then(data => {
-      const horarios = data.filter(h => h.dia.toLowerCase() === diaSemana);
-      if (horarios.length === 0) {
-        selectHora.innerHTML = `<option value="">No hay horarios disponibles</option>`;
-        return;
-      }
+  try {
+    // 1️⃣ Traer horarios del admin
+    const resHorarios = await fetch("acciones.php?accion=ver_horarios");
+    const todosLosHorarios = await resHorarios.json();
 
-      const opciones = [];
+    const horariosDelDia = todosLosHorarios.filter(h => h.dia.toLowerCase() === diaSemana);
 
-      horarios.forEach(h => {
-        const [hInicio, mInicio] = h.hora_inicio.split(":").map(Number);
-        const [hFin, mFin] = h.hora_fin.split(":").map(Number);
+    if (horariosDelDia.length === 0) {
+      selectHora.innerHTML = `<option value="">No hay horarios disponibles</option>`;
+      return;
+    }
 
-        let hora = hInicio;
+    // 2️⃣ Traer turnos ocupados para la fecha seleccionada
+    const resOcupados = await fetch(`acciones.php?accion=horarios_disponibles&fecha=${fecha}`);
+    const horariosOcupados = await resOcupados.json(); // { "10:00": 2, ... }
 
-        // Si el inicio tiene minutos, arrancamos desde ahí
-        if (mInicio > 0) hora++;
+    // 3️⃣ Crear opciones del select
+    selectHora.innerHTML = `<option value="">-- Elegí una hora --</option>`;
 
-        while (hora < hFin) {
-          const horaStr = hora.toString().padStart(2, "0");
-          opciones.push(`<option value="${horaStr}:00">${horaStr}:00</option>`);
-          hora++;
+    horariosDelDia.forEach(h => {
+      const [hInicio, mInicio] = h.hora_inicio.split(":").map(Number);
+      const [hFin, mFin] = h.hora_fin.split(":").map(Number);
+
+      let hora = hInicio;
+      while (hora < hFin) {
+        const horaStr = hora.toString().padStart(2, "0") + ":00";
+        const option = document.createElement("option");
+        option.value = horaStr;
+        option.textContent = horaStr;
+
+        // Bloquear si hay 2 o más turnos en esa hora
+        if (horariosOcupados[horaStr] >= 2) {
+          option.disabled = true;
+          option.textContent = `${horaStr} (ocupado)`;
+          option.style.color = "#b0b0b0"; // gris claro
         }
-      });
 
-      selectHora.innerHTML = `<option value="">-- Elegí una hora --</option>` + opciones.join("");
-    })
-    .catch(error => {
-      console.error("Error al cargar horarios:", error);
-      selectHora.innerHTML = `<option value="">Error al cargar horarios</option>`;
+        selectHora.appendChild(option);
+        hora++;
+      }
     });
+
+  } catch (error) {
+    console.error("Error al cargar horarios:", error);
+    selectHora.innerHTML = `<option value="">Error al cargar horarios</option>`;
+  }
 }

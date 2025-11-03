@@ -19,14 +19,14 @@ include '../conexion.php';
 
 <section>
   <div class="botones-panel">
-    <button onclick="toggleTurnos()">Turnos agendados</button>
-    <button onclick="mostrarServicios()">Servicios disponibles</button>
+    <button onclick="toggleTurnos()">Mis turnos</button>
+    <button onclick="mostrarServicios()">Mis servicios</button>
   </div>
   <div id="serviciosContainer" style="margin-top: 2rem;"></div>
   <div id="turnosContainer" style="display:none;">
 
   <div id="filtroContainer">
-    <label for="filtroFecha">Filtrar por fecha:</label>
+    <label for="filtroFecha">Buscar por fecha:</label>
     <input type="date" id="filtroFecha">
     <button onclick="filtrarPorFecha()">Buscar</button>
     <button onclick="mostrarTurnos()">Ver todos</button>
@@ -34,7 +34,7 @@ include '../conexion.php';
 
   <div id="tablaTurnos"></div>
 </div>
-<button onclick="toggleHorarios()">Ver horarios de atención</button>
+<button onclick="toggleHorarios()">Mis horarios</button>
 
 <div id="contenedorHorarios" style="display:none; margin-top:1em;">
 <div id="formularioHorario" style="margin-bottom: 1em;">

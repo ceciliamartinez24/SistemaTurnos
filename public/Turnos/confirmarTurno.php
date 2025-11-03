@@ -49,7 +49,7 @@ if ($stmt->execute()) {
     $mail->setFrom('cecimilimart@gmail.com', 'Agenda tu Look');
     $mail->addAddress($email);
     $mail->isHTML(true);
-    $mail->Subject = 'Confirmación de turno';
+    $mail->Subject = 'Confirmacion de turno';
     $mail->Body = "
       <p>Hola <strong>$nombre</strong>,</p>
       <p>Tu turno fue confirmado correctamente!</p>

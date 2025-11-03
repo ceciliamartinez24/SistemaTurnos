@@ -1,54 +1,110 @@
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f3f0f9; /* lavanda muy claro */
+font-family: Arial, sans-serif;
+padding: 20px;
+min-height: 100vh; /* asegura que cubre toda la pantalla */
+background-color: #f3f0f9; /* lavanda muy claro */
+background-image: url('../img/fondo2.jpg'); /* imagen de fondo */
+background-size: cover; /* cubre todo el área */
+background-position: center; /* centrado */
+background-repeat: no-repeat; /* no se repite */
+position: relative; /* necesario para overlay */
+}
+
+/* Overlay semitransparente para mejor lectura */
+body::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(243, 240, 249, 0.6); /* lavanda muy claro semi-transparente */
+z-index: -1;
 }
 
 h1, h2 {
-  color: #5e4b8b; /* lavanda profundo */
+color: #5e4b8b; /* lavanda profundo */
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(94, 75, 139, 0.1);
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+background-color: #ffffff;
+box-shadow: 0 0 10px rgba(94, 75, 139, 0.1);
 }
 
 th {
-  background-color: #dcd0ff; /* lavanda suave */
-  color: #4b3c72;
+background-color: #dcd0ff; /* lavanda suave */
+color: #4b3c72;
 }
 
 td {
-  background-color: #f7f5fc;
-  color: #4b3c72;
+background-color: #f7f5fc;
+color: #4b3c72;
 }
 
 th, td {
-  padding: 10px;
-  border: 1px solid #cbbbe2;
-  text-align: left;
+padding: 10px;
+border: 1px solid #cbbbe2;
+text-align: left;
+}
+
+/* Botones específicos en la esquina superior derecha */
+.botones-panel button:nth-child(2),
+button[onclick="toggleHorarios()"] {
+position: absolute;
+top: 20px;
+right: 20px; /* primer botón en la esquina */
+padding: 4px 8px; /* un poco más pequeños */
+font-size: 0.9rem;
+margin-left: 10px;
+}
+
+/* Ajustar segundo botón al lado del primero */
+button[onclick="toggleHorarios()"] {
+right: 130px; /* separado del primero */
+}
+
+/* Mantener la disposición original del resto de botones */
+.botones-panel {
+display: flex;
+gap: 12px;
+margin-bottom: 20px;
 }
 
 button {
-  padding: 6px 12px;
-  background-color: #a78bfa; /* lavanda vibrante */
+padding: 6px 12px;
+background-color: #a78bfa; /* lavanda vibrante */
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+button:hover {
+background-color: #7c5fe9; /* lavanda más intenso */
+}
+
+/* Botón Cerrar sesión en el borde inferior */
+a[href="../logout.php"] {
+  display: inline-block;
+  position: absolute; /* siempre visible en la ventana */
+  bottom: 20px;
+  left: 20px;
+  padding: 4px 8px; /* más pequeño */
+  font-size: 0.9rem;
+  background-color: #7c5fe9;
   color: white;
   border: none;
   border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #7c5fe9; /* lavanda más intenso */
+a[href="../logout.php"]:hover {
+  background-color: #7c5fe9;
 }
-.botones-panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
