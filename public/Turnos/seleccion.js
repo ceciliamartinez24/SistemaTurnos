@@ -74,11 +74,13 @@ if (!nombre || !telefono || !email){
 
   mostrarPasos("flyerServicios", "resumenTurno");
 });
+
 //boton ingresar como administrador.
 document.getElementById("botonAdministrador").addEventListener("click", function() {
   window.location.href = "login.php";
   console.log("Botón administrador presionado");
 });
+
 //funcion cargar Servicios
 function cargarServicios() {
   fetch("acciones.php?accion=ver_servicios")
@@ -101,14 +103,14 @@ function cargarServicios() {
 `;
 
       });
-
-      //contenedor.insertBefore(lista, document.getElementById("botonSiguiente3"));
     })
     .catch(error => {
       console.error("Error al cargar servicios:", error);
     });
 }
 cargarServicios();
+
+//_______________________________________________________________________________________ YANI
 
 const inputFecha = document.getElementById("fechaTurno");
 const selectHora = document.getElementById("horaTurno");
@@ -128,7 +130,7 @@ async function cargarHorariosDisponibles() {
   const diaSemana = dias[fechaObj.getDay()];
 
   try {
-    // 1️⃣ Traer horarios definidos por el admin
+    // traer horarios definidos por el admin
     const resHorarios = await fetch("acciones.php?accion=ver_horarios");
     const todosLosHorarios = await resHorarios.json();
     const horariosDelDia = todosLosHorarios.filter(h => h.dia.toLowerCase() === diaSemana);
@@ -138,11 +140,11 @@ async function cargarHorariosDisponibles() {
       return;
     }
 
-    // 2️⃣ Traer horarios ocupados para esa fecha
+    // traer horarios ocupados para esa fecha
     const resOcupados = await fetch(`acciones.php?accion=horarios_disponibles&fecha=${fecha}`);
-    const horariosOcupados = await resOcupados.json(); // { "10:00": 2, ... }
+    const horariosOcupados = await resOcupados.json(); 
 
-    // 3️⃣ Generar opciones del select
+    // generar opciones del select
     selectHora.innerHTML = `<option value="">-- Elegí una hora --</option>`;
 
     horariosDelDia.forEach(h => {

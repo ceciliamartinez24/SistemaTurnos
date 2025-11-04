@@ -16,14 +16,14 @@
 
   <main class="contenedor-formularios">
     
-    <!-- Pantalla inicial -->
+    <!-- pantalla inicial -->
     <section id="inicio" class="bloque-formulario">
       
       <button id="botonAdministrador" class="boton">Ingresar como administrador</button>
       <button id="botonSolicitar" class="boton" onclick="mostrarPasos('inicio','solicitudTurno')">Solicitar un turno</button>
     </section>
 
-    <!-- Paso 1: Datos del cliente -->
+    <!-- paso 1 datos del cliente -->
     <section id="solicitudTurno" class="bloque-formulario" style="display:none;">
       <h2>Ingrese sus datos</h2>
       <form id="formularioCliente">
