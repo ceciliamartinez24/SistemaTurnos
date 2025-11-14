@@ -1,4 +1,6 @@
+// funciones relacionadas con el apartado del cliente.
 //para formatear fecha estilo argentino
+
   function formatearFecha(fechaISO) {
     const partes = fechaISO.split("-");
     return `${partes[2]}/${partes[1]}/${partes[0]}`;

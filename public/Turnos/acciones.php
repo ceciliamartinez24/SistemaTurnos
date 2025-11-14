@@ -14,9 +14,8 @@ include '../conexion.php';
 $accion = $_GET['accion'] ?? '';
 //echo "Valor de \$accion: $accion<br>";
 
-// Lógica segun el valor de 'accion'
+
 if ($accion === 'listar_turnos') {
-    //echo "Listando turnos...<br>";
     $query = "SELECT * FROM turnos ORDER BY fecha_turno, hora_turno";
     $result = $mysqli->query($query);
     $turnos = [];
@@ -42,10 +41,8 @@ if ($accion === 'cancelar_turno' && isset($_GET['id'])) {
     $stmt->close();
 }
 
-// Otras acciones posibles
 if ($accion === 'ver' && isset($_GET['id'])) {
     echo "Mostrando detalles del turno ID: " . $_GET['id'];
-    // Aquí podrías agregar una consulta SELECT para mostrar el turno
 }
 
 
@@ -119,7 +116,7 @@ if ($accion === 'agendar_turno' && isset($_GET['fecha'], $_GET['hora'], $_GET['c
   $hora = $_GET['hora'];
 
 
-  // Validación: ¿ya hay 2 turnos en ese horario?
+  // si hay 2 turnos en el mismo horario
   $stmt = $mysqli->prepare("SELECT COUNT(*) FROM turnos WHERE fecha_turno = ? AND hora_turno = ?");
   $stmt->bind_param("ss", $fecha, $hora);
   $stmt->execute();

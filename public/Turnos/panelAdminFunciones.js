@@ -295,7 +295,7 @@ function activarEdicionHorario(id, dia, inicio, fin) {
     <td><input type="time" id="edit-fin-${id}" value="${fin}"></td>
     <td>
       <button onclick="guardarHorarioEditado(${id})">Guardar</button>
-      <button onclick="mostrarHorarios()">❌</button>
+      <button onclick="mostrarHorarios()">x</button>
     </td>
   `;
 }
