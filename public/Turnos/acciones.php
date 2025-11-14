@@ -82,8 +82,17 @@ if ($accion === 'agregar_servicio' && isset($_GET['nombre'], $_GET['precio'])) {
   exit();
 }
 
-if ($_GET['accion'] === 'filtrar_turnos_por_fecha') {
-  $fecha = $_GET['fecha'];
+
+$accion = $_GET['accion'] ?? '';
+
+if ($accion === 'filtrar_turnos_por_fecha') {
+  $fecha = $_GET['fecha'] ?? '';
+
+  if ($fecha === '') {
+    echo json_encode(["error" => "Fecha no especificada"]);
+    exit;
+  }
+
   $stmt = $mysqli->prepare("SELECT * FROM turnos WHERE fecha_turno = ? ORDER BY hora_turno ASC");
   $stmt->bind_param("s", $fecha);
   $stmt->execute();
