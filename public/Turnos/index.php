@@ -95,7 +95,7 @@ $version = "v1.3.0";
   <script src="seleccion.js"></script>
 
 <?php
-$version = "v1.3.0";
+$version = "v1.6.3";
 echo "<footer style='position:fixed;bottom:10px;right:10px;color:#2e1a47;font-weight:bold;font-size:18px;z-index:1000;'>
         <small>Versión $version</small>
       </footer>";
