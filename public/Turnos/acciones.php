@@ -1,12 +1,7 @@
 <?php
-// acciones.php — Controlador backend que gestiona acciones del sistema de turnos, 
-// servicios y horarios.
-// Recibe parámetros por GET, ejecuta consultas SQL y responde en JSON para el panel administrativo.
+// Controlador backend que gestiona acciones del sistema
+// responde en JSON para el panel administrativo.
 session_start();
-if (!isset($_SESSION['admin'])) {
-  http_response_code(403);
-  exit('Acceso denegado');
-}
 
 
 // Mostrar errores en pantalla
@@ -19,7 +14,7 @@ include '../conexion.php';
 $accion = $_GET['accion'] ?? '';
 //echo "Valor de \$accion: $accion<br>";
 
-// Lógica según el valor de 'accion'
+// Lógica segun el valor de 'accion'
 if ($accion === 'listar_turnos') {
     //echo "Listando turnos...<br>";
     $query = "SELECT * FROM turnos ORDER BY fecha_turno, hora_turno";

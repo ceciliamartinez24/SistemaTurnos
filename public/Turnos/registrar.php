@@ -1,6 +1,6 @@
 <?php
 // Permite a nuevos clientes registrarse en el sistema.
-// Guarda datos básicos en la base de datos y prepara el entorno para agendar turnos.
+// Guarda datos en la base de datos y prepara el entorno para agendar turnos.
 $conexion = new mysqli("localhost", "root", "", "sistema_turnos");
 
 if ($conexion->connect_error) {

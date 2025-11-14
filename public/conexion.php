@@ -1,6 +1,6 @@
 <?php
-// conexion.php — Establece la conexión con la base de datos sistema_turnos usando mysqli.
-// Configura charset utf8mb4 y valida errores de conexión.
+//Establece la conexion con la base de datos sistema_turnos usando mysqli.
+// Configura charset utf8mb4 y valida errores de conexion.
 $host = '127.0.0.1';
 $user = 'root';
 $pass = ''; 

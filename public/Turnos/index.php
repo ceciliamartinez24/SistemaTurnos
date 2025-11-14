@@ -1,6 +1,9 @@
 <?php
-//index.php — Página principal del sistema de turnos.
-// Muestra opciones generales y redirige según el tipo de usuario (cliente o administrador).
+//Pagina principal del sistema de turnos.
+//redirige según el tipo de usuario (cliente o administrador).
+
+$version = "v1.3.0";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -91,6 +94,11 @@
 
   <script src="seleccion.js"></script>
 
-
+<?php
+$version = "v1.3.0";
+echo "<footer style='position:fixed;bottom:10px;right:10px;color:#2e1a47;font-weight:bold;font-size:18px;z-index:1000;'>
+        <small>Versión $version</small>
+      </footer>";
+?>
 </body>
 </html>

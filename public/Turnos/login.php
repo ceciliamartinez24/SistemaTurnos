@@ -1,6 +1,6 @@
 <?php
-// login.php — Permite al administrador iniciar sesión en el sistema.
-// Valida credenciales y crea la sesión para acceder al panel administrativo.
+// Permite al administrador iniciar sesion en el sistema.
+// Valida y crea la sesion para acceder al panel administrativo.
 session_start();
 $conexion = new mysqli("localhost", "root", "", "sistema_turnos");
 
