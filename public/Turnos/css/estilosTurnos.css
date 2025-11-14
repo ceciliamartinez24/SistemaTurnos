@@ -35,7 +35,7 @@ header h1 {
   color: #6c4f8d;            /* violeta suave */
   text-align: center;
   margin: 1rem 0;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* sutil sombra para destacar */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); 
 }
 
 
@@ -52,7 +52,7 @@ z-index: 1;
 
 /* Aplica el fondo lila solo a los formularios que NO sean el inicio */
 .bloque-formulario:not(#inicio) {
-  background-color: #e6ccff; /* fondo lila suave */
+  background-color: #e6ccff; 
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

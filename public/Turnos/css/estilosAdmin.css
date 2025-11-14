@@ -50,13 +50,13 @@ border: 1px solid #cbbbe2;
 text-align: left;
 }
 
-/* Botones específicos en la esquina superior derecha */
+/* Botones especificos en la esquina superior derecha */
 .botones-panel button:nth-child(2),
 button[onclick="toggleHorarios()"] {
 position: absolute;
 top: 20px;
-right: 20px; /* primer botón en la esquina */
-padding: 4px 8px; /* un poco más pequeños */
+right: 20px; /* primer boton en la esquina */
+padding: 4px 8px; 
 font-size: 0.9rem;
 margin-left: 10px;
 }
@@ -66,7 +66,7 @@ button[onclick="toggleHorarios()"] {
 right: 130px; /* separado del primero */
 }
 
-/* Mantener la disposición original del resto de botones */
+
 .botones-panel {
 display: flex;
 gap: 12px;
@@ -75,7 +75,7 @@ margin-bottom: 20px;
 
 button {
 padding: 6px 12px;
-background-color: #a78bfa; /* lavanda vibrante */
+background-color: #a78bfa; 
 color: white;
 border: none;
 border-radius: 4px;
@@ -84,16 +84,15 @@ transition: background-color 0.3s ease;
 }
 
 button:hover {
-background-color: #7c5fe9; /* lavanda más intenso */
+background-color: #7c5fe9; 
 }
 
-/* Botón Cerrar sesión en el borde inferior */
+
 a[href="../logout.php"] {
-  display: inline-block;
-  position: absolute; /* siempre visible en la ventana */
+  position: fixed;
   bottom: 20px;
-  left: 20px;
-  padding: 4px 8px; /* más pequeño */
+  right: 20px;
+  padding: 6px 12px;
   font-size: 0.9rem;
   background-color: #7c5fe9;
   color: white;
@@ -102,8 +101,10 @@ a[href="../logout.php"] {
   text-decoration: none;
   text-align: center;
   cursor: pointer;
+  z-index: 1000;
   transition: background-color 0.3s ease;
 }
+
 
 a[href="../logout.php"]:hover {
   background-color: #7c5fe9;
