@@ -22,7 +22,7 @@ background-color: rgba(243, 240, 249, 0.6); /* lavanda muy claro semi-transparen
 z-index: -1;
 }
 
-h1, h2 {
+h1, h2, h3 {
 color: #5e4b8b; /* lavanda profundo */
 }
 
