@@ -1,4 +1,6 @@
 <?php
+// Permite a nuevos clientes registrarse en el sistema.
+// Guarda datos básicos en la base de datos y prepara el entorno para agendar turnos.
 $conexion = new mysqli("localhost", "root", "", "sistema_turnos");
 
 if ($conexion->connect_error) {
@@ -32,7 +34,7 @@ if (isset($_POST['registrar'])) {
 
     if ($stmt->execute()) {
         $mensaje = "<p class='mensaje-exito'>Administrador registrado correctamente.</p>";
-
+        echo "<a href='login.php' style='display:inline-block;padding:10px 20px;background-color:#c390f8;color:white;text-decoration:none;border-radius:5px;'>Ir al login</a>";
     } else {
         $mensaje = "<p class='mensaje-error'>Error al registrar: " . $conexion->error . "</p>";
     }

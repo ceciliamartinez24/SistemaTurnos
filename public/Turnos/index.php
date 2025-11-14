@@ -1,3 +1,7 @@
+<?php
+//index.php — Página principal del sistema de turnos.
+// Muestra opciones generales y redirige según el tipo de usuario (cliente o administrador).
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

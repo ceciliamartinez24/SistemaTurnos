@@ -1,3 +1,5 @@
+// Script JS que conecta el panel admin con el backend.
+// Envía solicitudes AJAX a acciones.php para listar, editar y eliminar turnos, servicios y horarios.
 function formatearFecha(fechaISO) {
   const partes = fechaISO.split("-");
   return `${partes[2]}/${partes[1]}/${partes[0]}`;

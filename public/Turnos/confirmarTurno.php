@@ -1,4 +1,6 @@
 <?php
+// Procesa la confirmación de turnos desde el cliente.
+// Recibe datos por POST o GET, valida disponibilidad y guarda el turno en la base de datos.
 require_once "../conexion.php";
 
 use PHPMailer\PHPMailer\PHPMailer;

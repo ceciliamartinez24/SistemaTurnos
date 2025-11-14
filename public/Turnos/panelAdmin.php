@@ -1,4 +1,6 @@
 <?php
+//Interfaz principal del administrador para gestionar turnos, servicios y horarios.
+// Requiere sesión activa y se comunica con acciones.php mediante AJAX.
 session_start();
 if (!isset($_SESSION['admin'])) {
   header("Location: login.php");
